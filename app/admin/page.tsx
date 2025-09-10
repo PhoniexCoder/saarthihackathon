@@ -4,14 +4,14 @@ import { AdminDashboard } from "@/components/admin/admin-dashboard"
 
 export default function AdminPage() {
   return (
-    <ProtectedRoute requireAdmin>
-      <div className="min-h-screen bg-background">
-        <Suspense
-          fallback={<div className="flex items-center justify-center min-h-screen">Loading admin panel...</div>}
-        >
+    <div className="min-h-screen bg-background">
+      <Suspense
+        fallback={<div className="flex items-center justify-center min-h-screen">Loading admin panel...</div>}
+      >
+        <ProtectedRoute requireAdmin>
           <AdminDashboard />
-        </Suspense>
-      </div>
-    </ProtectedRoute>
+        </ProtectedRoute>
+      </Suspense>
+    </div>
   )
 }

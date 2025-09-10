@@ -1,16 +1,9 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { DM_Sans } from "next/font/google"
 import "./globals.css"
 import { AuthProvider } from "@/contexts/auth-context"
 import CustomCursor from "@/components/effects/custom-cursor"
 import BackgroundElements from "@/components/ui/background-elements";
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-dm-sans",
-})
 
 export const metadata: Metadata = {
   title: "SARTHI 2025 - Inter-University Hackathon",
@@ -23,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} antialiased`}>
+    <html lang="en" className="antialiased">
       <body className="font-sans tech-particles">
         <BackgroundElements />
         <CustomCursor />

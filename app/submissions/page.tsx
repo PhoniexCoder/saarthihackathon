@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useAuth } from "@/contexts/auth-context"
 import { ProtectedRoute } from "@/components/auth/protected-route"
 import { SubmissionForm } from "@/components/submissions/submission-form"
@@ -10,7 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { collection, query, where, onSnapshot } from "firebase/firestore"
 import { db } from "@/lib/firebase"
-import { AlertCircle, Users } from "lucide-react"
+import { AlertCircle, Users, Loader2 } from "lucide-react"
 
 interface Team {
   id: string
@@ -26,15 +26,17 @@ interface Team {
   }
 }
 
-export default function SubmissionsPage() {
+function SubmissionsPageContent() {
   const { user, userProfile } = useAuth()
   const [userTeam, setUserTeam] = useState<Team | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!user) return
+    if (!user) {
+      setLoading(false)
+      return
+    }
 
-    // Listen to user's team
     const teamsQuery = query(collection(db, "teams"), where("members", "array-contains", user.uid))
 
     const unsubscribe = onSnapshot(teamsQuery, async (snapshot) => {
@@ -44,7 +46,6 @@ export default function SubmissionsPage() {
           id: teamDoc.id,
           ...teamDoc.data(),
         } as Team
-
         setUserTeam(teamData)
       } else {
         setUserTeam(null)
@@ -54,6 +55,14 @@ export default function SubmissionsPage() {
 
     return unsubscribe
   }, [user])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    )
+  }
 
   if (!userProfile?.registrationComplete) {
     return (
@@ -100,16 +109,13 @@ export default function SubmissionsPage() {
     <ProtectedRoute>
       <div className="min-h-screen bg-background pt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Project Submissions</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Upload your team's project presentation and demo video for SARTHI 2025
             </p>
           </div>
-
           <div className="space-y-6">
-            {/* Team Info */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -121,14 +127,8 @@ export default function SubmissionsPage() {
                 </CardDescription>
               </CardHeader>
             </Card>
-
-            {/* Submission Status */}
             <SubmissionStatus team={userTeam} />
-
-            {/* Submission Form */}
             <SubmissionForm team={userTeam} />
-
-            {/* Guidelines */}
             <Card>
               <CardHeader>
                 <CardTitle>Submission Guidelines</CardTitle>
@@ -143,7 +143,6 @@ export default function SubmissionsPage() {
                     <li>Include team member details and contact information</li>
                   </ul>
                 </div>
-
                 <div>
                   <h3 className="font-semibold mb-2">Demo Video Requirements</h3>
                   <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
@@ -153,7 +152,6 @@ export default function SubmissionsPage() {
                     <li>Include brief explanation of accessibility features</li>
                   </ul>
                 </div>
-
                 <div>
                   <h3 className="font-semibold mb-2">Important Notes</h3>
                   <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
@@ -169,5 +167,17 @@ export default function SubmissionsPage() {
         </div>
       </div>
     </ProtectedRoute>
+  )
+}
+
+export default function SubmissionsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    }>
+      <SubmissionsPageContent />
+    </Suspense>
   )
 }
