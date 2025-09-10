@@ -97,17 +97,55 @@ export function RegistrationForm() {
   }
 
   const validateStep = (step: number): boolean => {
+    // Helper regex
+    const nameRegex = /^[A-Za-z ]+$/;
+    const phoneRegex = /^\d{10}$/;
+    const ageNum = Number(formData.age);
+    const yearNum = Number(formData.yearOfStudy);
+    // Trim all string fields for validation
+    const fullName = formData.fullName.trim();
+    const phone = formData.phone.trim();
+    const gender = formData.gender.trim();
+    const university = formData.university.trim();
+    const degree = formData.degree.trim();
+    const yearOfStudy = formData.yearOfStudy.trim();
+    const department = formData.department.trim();
+    const emergencyContactName = formData.emergencyContactName.trim();
+    const emergencyContactPhone = formData.emergencyContactPhone.trim();
+
     switch (step) {
       case 1:
-        return !!(formData.fullName && formData.phone && formData.age)
+        return (
+          !!fullName &&
+          nameRegex.test(fullName) &&
+          !!phone &&
+          phoneRegex.test(phone) &&
+          !!formData.age &&
+          !isNaN(ageNum) &&
+          ageNum >= 16 && ageNum <= 100 &&
+          !!gender
+        );
       case 2:
-        return !!(formData.university && formData.degree && formData.yearOfStudy && formData.department)
+        return (
+          !!university &&
+          !!degree &&
+          !!yearOfStudy &&
+          !isNaN(yearNum) &&
+          yearNum >= 1 && yearNum <= 6 &&
+          !!department
+        );
       case 3:
-        return !!(formData.emergencyContactName && formData.emergencyContactPhone)
+        return (
+          !!emergencyContactName &&
+          nameRegex.test(emergencyContactName) &&
+          !!emergencyContactPhone &&
+          phoneRegex.test(emergencyContactPhone) &&
+          emergencyContactPhone !== phone // Emergency contact must be different
+        );
       case 4:
         return formData.agreeRules && formData.consentMedia && formData.consentData
       default:
-        return false
+        return false;
     }
   }
 
@@ -116,7 +154,62 @@ export function RegistrationForm() {
       setCurrentStep((prev) => Math.min(prev + 1, 4))
       setError("")
     } else {
-      setError("Please fill in all required fields before proceeding.")
+      // Custom error messages for each step
+      const nameRegex = /^[A-Za-z ]+$/;
+      const phoneRegex = /^\d{10}$/;
+      const ageNum = Number(formData.age);
+      const yearNum = Number(formData.yearOfStudy);
+      const fullName = formData.fullName.trim();
+      const phone = formData.phone.trim();
+      const gender = formData.gender.trim();
+      const university = formData.university.trim();
+      const degree = formData.degree.trim();
+      const yearOfStudy = formData.yearOfStudy.trim();
+      const department = formData.department.trim();
+      const emergencyContactName = formData.emergencyContactName.trim();
+      const emergencyContactPhone = formData.emergencyContactPhone.trim();
+      switch (currentStep) {
+        case 1:
+          if (!fullName || !phone || !formData.age || !gender) {
+            setError("Please fill in all required fields before proceeding.");
+          } else if (!nameRegex.test(fullName)) {
+            setError("Full name must contain only letters and spaces.");
+          } else if (!phoneRegex.test(phone)) {
+            setError("Phone number must be 10 digits.");
+          } else if (isNaN(ageNum) || ageNum < 16 || ageNum > 100) {
+            setError("Age must be a number between 16 and 100.");
+          } else {
+            setError("Invalid data in personal details.");
+          }
+          break;
+        case 2:
+          if (!university || !degree || !yearOfStudy || !department) {
+            setError("Please fill in all academic details.");
+          } else if (isNaN(yearNum) || yearNum < 1 || yearNum > 6) {
+            setError("Year of study must be a number between 1 and 6.");
+          } else {
+            setError("Invalid data in academic details.");
+          }
+          break;
+        case 3:
+          if (!emergencyContactName || !emergencyContactPhone) {
+            setError("Please fill in all required fields before proceeding.");
+          } else if (!nameRegex.test(emergencyContactName)) {
+            setError("Emergency contact name must contain only letters and spaces.");
+          } else if (!phoneRegex.test(emergencyContactPhone)) {
+            setError("Emergency contact phone must be 10 digits.");
+          } else if (emergencyContactPhone === phone) {
+            setError("Emergency contact phone must be different from your phone number.");
+          } else {
+            setError("Invalid data in emergency contact.");
+          }
+          break;
+        case 4:
+          setError("Please accept all declarations to proceed.");
+          break;
+        default:
+          setError("Please fill in all required fields before proceeding.");
+      }
     }
   }
 

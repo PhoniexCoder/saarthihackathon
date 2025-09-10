@@ -15,6 +15,13 @@ import { GSAPTextHover } from "@/components/effects/gsap-text-hover"
 import { FlipCard } from "@/components/ui/flip-card"
 
 export default function HomePage() {
+  // Contact form state
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const [contactLoading, setContactLoading] = useState(false);
+  const [contactSuccess, setContactSuccess] = useState("");
+  const [contactError, setContactError] = useState("");
   const { user, userProfile, logout } = useAuth()
   const [showLoginModal, setShowLoginModal] = useState(false)
 
@@ -689,14 +696,15 @@ export default function HomePage() {
 
                   <div className="pt-4">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.175!2d78.0322!3d30.2849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39092b6cf4b0c4d7%3A0x1b2b2b2b2b2b2b2b!2sGraphic%20Era%20Hill%20University!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+                      src="https://www.google.com/maps?q=30.273633412971506,77.99979116210066&t=k&z=17&output=embed"
                       width="100%"
-                      height="200"
+                      height="350"
                       style={{ border: 0 }}
                       allowFullScreen
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
-                      className="rounded-lg"
+                      className="rounded-lg shadow-lg"
+                      title="Graphic Era Hill University Map"
                     ></iframe>
                   </div>
                 </CardContent>
@@ -710,23 +718,78 @@ export default function HomePage() {
                   <CardDescription>We'll get back to you as soon as possible</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form className="space-y-4">
+                  <form
+                    className="space-y-4"
+                    onSubmit={async (e) => {
+                      e.preventDefault();
+                      setContactSuccess("");
+                      setContactError("");
+                      if (!contactName || !contactEmail || !contactMessage) {
+                        setContactError("All fields are required.");
+                        return;
+                      }
+                      setContactLoading(true);
+                      try {
+                        const res = await fetch("/api/messages", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ name: contactName, email: contactEmail, message: contactMessage }),
+                        });
+                        const data = await res.json();
+                        if (res.ok && data.success) {
+                          setContactSuccess("Message sent successfully! We'll get back to you soon.");
+                          setContactName("");
+                          setContactEmail("");
+                          setContactMessage("");
+                        } else {
+                          setContactError(data.error || "Failed to send message.");
+                        }
+                      } catch (err) {
+                        setContactError("Failed to send message. Please try again later.");
+                      } finally {
+                        setContactLoading(false);
+                      }
+                    }}
+                  >
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label className="text-sm font-medium mb-2 block">Name</label>
-                        <Input placeholder="Your full name" />
+                        <Input
+                          placeholder="Your full name"
+                          value={contactName}
+                          onChange={e => setContactName(e.target.value)}
+                          required
+                        />
                       </div>
                       <div>
                         <label className="text-sm font-medium mb-2 block">Email</label>
-                        <Input type="email" placeholder="your.email@example.com" />
+                        <Input
+                          type="email"
+                          placeholder="your.email@example.com"
+                          value={contactEmail}
+                          onChange={e => setContactEmail(e.target.value)}
+                          required
+                        />
                       </div>
                     </div>
                     <div>
                       <label className="text-sm font-medium mb-2 block">Message</label>
-                      <Textarea placeholder="Your message here..." rows={5} />
+                      <Textarea
+                        placeholder="Your message here..."
+                        rows={5}
+                        value={contactMessage}
+                        onChange={e => setContactMessage(e.target.value)}
+                        required
+                      />
                     </div>
-                    <Button type="submit" className="w-full">
-                      Send Message
+                    {contactError && (
+                      <div className="text-red-500 text-sm">{contactError}</div>
+                    )}
+                    {contactSuccess && (
+                      <div className="text-green-600 text-sm">{contactSuccess}</div>
+                    )}
+                    <Button type="submit" className="w-full" disabled={contactLoading}>
+                      {contactLoading ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
@@ -737,9 +800,9 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-12">
+  <footer className="bg-black text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-4 gap-10 md:gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg"></div>
@@ -755,97 +818,83 @@ export default function HomePage() {
             <div>
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2 text-sm">
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#about" className="text-muted hover:text-background transition-colors">
-                      About
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#themes" className="text-muted hover:text-background transition-colors">
-                      Themes
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#schedule" className="text-muted hover:text-background transition-colors">
-                      Schedule
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#prizes" className="text-muted hover:text-background transition-colors">
-                      Prizes
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="/results" className="text-muted hover:text-background transition-colors">
-                      Results
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#contact" className="text-muted hover:text-background transition-colors">
-                      Contact
-                    </a>
-                  </GSAPTextHover>
-                </li>
+                {[
+                  { href: '#about', label: 'About' },
+                  { href: '#themes', label: 'Themes' },
+                  { href: '#schedule', label: 'Schedule' },
+                  { href: '#prizes', label: 'Prizes' },
+                  { href: '/results', label: 'Results' },
+                  { href: '#contact', label: 'Contact' },
+                ].map(link => (
+                  <li key={link.href}>
+                    <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
+                      <a
+                        href={link.href}
+                        className="text-muted hover:text-primary focus:text-primary transition-colors outline-none focus:underline"
+                        tabIndex={0}
+                      >
+                        {link.label}
+                      </a>
+                    </GSAPTextHover>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#rules" className="text-muted hover:text-background transition-colors">
-                      Rules
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#faq" className="text-muted hover:text-background transition-colors">
-                      FAQ
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#contact" className="text-muted hover:text-background transition-colors">
-                      Contact
-                    </a>
-                  </GSAPTextHover>
-                </li>
-                <li>
-                  <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                    <a href="#sponsors" className="text-muted hover:text-background transition-colors">
-                      Sponsors
-                    </a>
-                  </GSAPTextHover>
-                </li>
+                {[
+                  { href: '#rules', label: 'Rules' },
+                  { href: '#faq', label: 'FAQ' },
+                  { href: '#contact', label: 'Contact' },
+                  { href: '#sponsors', label: 'Sponsors' },
+                ].map(link => (
+                  <li key={link.href}>
+                    <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
+                      <a
+                        href={link.href}
+                        className="text-muted hover:text-primary focus:text-primary transition-colors outline-none focus:underline"
+                        tabIndex={0}
+                      >
+                        {link.label}
+                      </a>
+                    </GSAPTextHover>
+                  </li>
+                ))}
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">Connect</h3>
               <div className="flex space-x-4">
-                <Button variant="ghost" size="sm" className="text-muted hover:text-background">
-                  <ExternalLink className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-muted hover:text-background">
-                  <ExternalLink className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-muted hover:text-background">
-                  <ExternalLink className="w-4 h-4" />
-                </Button>
+                <a
+                  href="https://www.linkedin.com/school/graphic-era-hill-university/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="rounded-full p-2 bg-background/10 hover:bg-primary/80 focus:bg-primary/80 transition-colors text-muted hover:text-background focus:text-background outline-none"
+                >
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/></svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/gehuofficial/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="rounded-full p-2 bg-background/10 hover:bg-primary/80 focus:bg-primary/80 transition-colors text-muted hover:text-background focus:text-background outline-none"
+                >
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.011 3.584-.069 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.011-4.85-.069c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608-.058-1.266-.069-1.646-.069-4.85s.011-3.584.069-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.241-1.246 3.608-1.308 1.266-.058 1.646-.069 4.85-.069zm0-2.163c-3.259 0-3.667.012-4.947.07-1.276.058-2.687.334-3.678 1.325-.991.991-1.267 2.402-1.325 3.678-.058 1.28-.07 1.688-.07 4.947s.012 3.667.07 4.947c.058 1.276.334 2.687 1.325 3.678.991.991 2.402 1.267 3.678 1.325 1.28.058 1.688.07 4.947.07s3.667-.012 4.947-.07c1.276-.058 2.687-.334 3.678-1.325.991-.991 1.267-2.402 1.325-3.678.058-1.28.07-1.688.07-4.947s-.012-3.667-.07-4.947c-.058-1.276-.334-2.687-1.325-3.678-.991-.991-2.402-1.267-3.678-1.325-1.28-.058-1.688-.07-4.947-.07zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+                </a>
+                <a
+                  href="https://twitter.com/gehuofficial"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
+                  className="rounded-full p-2 bg-background/10 hover:bg-primary/80 focus:bg-primary/80 transition-colors text-muted hover:text-background focus:text-background outline-none"
+                >
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.916 4.916 0 0 0-8.38 4.482c-4.083-.205-7.697-2.162-10.125-5.144a4.822 4.822 0 0 0-.664 2.475c0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417a9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.069a13.945 13.945 0 0 0 7.548 2.212c9.057 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg>
+                </a>
               </div>
             </div>
           </div>
