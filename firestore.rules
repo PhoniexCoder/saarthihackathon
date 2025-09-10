@@ -1,0 +1,107 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ========================
+    // Security Rules Helpers
+    // ========================
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isTeamLeader(teamId) {
+      return debug("isTeamLeader - teamId:", teamId, "request.auth.uid:", request.auth.uid)
+        && isSignedIn()
+        && exists(/databases/$(database)/documents/teams/$(teamId))
+        && get(/databases/$(database)/documents/teams/$(teamId)).data.leaderId == request.auth.uid;
+    }
+
+    // Corrected isValidTeamData to match client-side creation data
+    function isValidTeamData() {
+      return request.resource.data.keys().hasAll([
+        'teamName', 'leaderId', 'leaderEmail', // Added leaderEmail
+        'members', 'maxMembers', 'createdAt', 'inviteCode' // Added inviteCode
+      ]);
+    }
+
+    // Corrected isValidInvite to match client-side creation data
+    function isValidInvite() {
+      return request.resource.data.keys().hasAll([
+        'teamId', 'expiresAt', 'createdBy', 'used', 'usedBy' // Added used, usedBy
+      ]) && request.resource.data.expiresAt > request.time;
+    }
+
+    // ========================
+    // Collection Rules
+    // ========================
+
+    // User profile rules
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow write: if isOwner(userId);
+    }
+
+    // Teams collection
+    match /teams/{teamId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+        && request.resource.data.leaderId == request.auth.uid
+        && request.resource.data.members.hasOnly([request.auth.uid])
+        && isValidTeamData();
+      allow update: if isTeamLeader(teamId)
+        && request.resource.data.keys().hasAll([ // Explicitly list fields allowed for update
+            'teamName', 'members', 'maxMembers', 'status', 'leaderName', 'memberDetails' // Add other fields that can be updated
+           ])
+        && request.resource.data.members.size() <= request.resource.data.maxMembers;
+    }
+
+    // Invites collection
+    match /invites/{inviteId} {
+      allow create: if isTeamLeader(request.resource.data.teamId)
+        && isValidInvite()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow read: if isSignedIn() && resource.data.createdBy == request.auth.uid;
+      allow update: if isTeamLeader(resource.data.teamId)
+        && request.resource.data.keys().hasOnly(['used'])
+        && request.resource.data.used == true;
+    }
+
+    // Join requests collection
+    match /joinRequests/{requestId} {
+      allow read: if debug("isTeamLeader result:", isTeamLeader(resource.data.teamId))
+        && debug("resource.data.status == 'pending' result:", resource.data.status == 'pending')
+        && isTeamLeader(resource.data.teamId)
+        && resource.data.status == 'pending';
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasAll([
+          'teamId', 'userId', 'userName', 'userEmail',
+          'status', 'createdAt', 'message'
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.status == 'pending';
+      allow update: if isTeamLeader(request.resource.data.teamId)
+        && request.resource.data.status in ['approved', 'rejected'];
+    }
+
+    // Submissions rules
+    match /submissions/{submissionId} {
+      allow read: if isSignedIn()
+        && (resource.data.submittedBy == request.auth.uid || isTeamLeader(resource.data.teamId));
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasAll([
+          'teamId', 'submittedBy', 'status',
+          'pptLink', 'videoLink', 'submittedAt'
+        ])
+        && request.resource.data.submittedBy == request.auth.uid;
+      allow update: if isSignedIn()
+        && (resource.data.submittedBy == request.auth.uid || isTeamLeader(resource.data.teamId))
+        && request.resource.data.status in ['draft', 'final'];
+    }
+
+    // Default deny all access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
