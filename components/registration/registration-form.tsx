@@ -40,7 +40,7 @@ interface RegistrationData {
 }
 
 export function RegistrationForm() {
-  const { user, userProfile, loading: authLoading } = useAuth()
+  const { user, userProfile, loading: authLoading, reloadUserProfile } = useAuth()
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
@@ -162,6 +162,11 @@ export function RegistrationForm() {
         const { setDoc, doc } = await import("firebase/firestore")
         await setDoc(doc(db, "users", user.uid), cleanedData, { merge: true })
       })
+
+      // Reload user profile to get latest registrationComplete status
+      if (typeof reloadUserProfile === 'function') {
+        await reloadUserProfile();
+      }
 
       // Redirect to dashboard or success page
       router.push("/dashboard")
