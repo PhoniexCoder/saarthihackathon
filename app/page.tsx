@@ -183,11 +183,11 @@ export default function HomePage() {
               <Card>
                 <CardHeader>
                   <Clock className="w-12 h-12 text-accent mb-4" />
-                  <CardTitle>48-Hour Challenge</CardTitle>
+                  <CardTitle>24-Hour Challenge</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Intensive 48-hour hackathon with mentorship, workshops, and networking opportunities.
+                    Intensive 24-hour hackathon with mentorship, workshops, and networking opportunities.
                   </p>
                 </CardContent>
               </Card>
@@ -259,7 +259,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Event Schedule</h2>
-            <p className="text-lg text-muted-foreground">48 hours of innovation, collaboration, and impact</p>
+            <p className="text-lg text-muted-foreground">24 hours of innovation, collaboration, and impact</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -268,20 +268,16 @@ export default function HomePage() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calendar className="w-5 h-5" />
-                    Day 1 - November 8th
+                    November 8th
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Registration & Check-in</span>
-                    <Badge variant="outline">9:00 AM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Opening Ceremony</span>
                     <Badge variant="outline">10:00 AM</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-medium">Team Formation</span>
+                    <span className="font-medium">Opening Ceremony</span>
                     <Badge variant="outline">11:00 AM</Badge>
                   </div>
                   <div className="flex justify-between items-center">
@@ -301,29 +297,25 @@ export default function HomePage() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calendar className="w-5 h-5" />
-                    Day 2 - November 9th
+                    November 9th
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Final Submissions</span>
-                    <Badge variant="outline">10:00 AM</Badge>
+                    <Badge variant="outline">12:00 PM</Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Project Presentations</span>
-                    <Badge variant="outline">11:00 AM</Badge>
+                    <Badge variant="outline">1:00 PM</Badge>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-medium">Judging & Evaluation</span>
-                    <Badge variant="outline">2:00 PM</Badge>
+                    <Badge variant="outline">2:30 PM</Badge>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-medium">Awards Ceremony</span>
+                    <span className="font-medium">Awards & Closing Ceremony</span>
                     <Badge variant="outline">4:00 PM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Closing Ceremony</span>
-                    <Badge variant="outline">5:00 PM</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -504,7 +496,7 @@ export default function HomePage() {
               <AccordionItem value="item-5">
                 <AccordionTrigger>Can I work on my project before the hackathon?</AccordionTrigger>
                 <AccordionContent>
-                  No, all development work must be done during the 48-hour hackathon period. However, you can research
+                  No, all development work must be done during the 24-hour hackathon period. However, you can research
                   ideas, plan your approach, and prepare any necessary accounts or tools beforehand.
                 </AccordionContent>
               </AccordionItem>

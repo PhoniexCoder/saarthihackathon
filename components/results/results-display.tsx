@@ -8,6 +8,25 @@ import { Button } from "@/components/ui/button"
 import { Trophy, Medal, Award, Star, Users, Calendar, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 
+// Animated background elements (blobs, SVGs)
+function BackgroundElements() {
+	return (
+		<div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+			{/* Blurred gradient blobs */}
+			<div className="absolute top-[-10%] left-[-10%] w-[400px] h-[400px] bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 opacity-30 rounded-full blur-3xl animate-pulse-slow" />
+			<div className="absolute bottom-[-10%] right-[-10%] w-[350px] h-[350px] bg-gradient-to-tr from-purple-300 via-blue-200 to-cyan-300 opacity-20 rounded-full blur-2xl animate-pulse-slower" />
+			{/* SVG tech lines */}
+			<svg className="absolute left-1/4 top-0 w-2/3 h-40 opacity-20" viewBox="0 0 600 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 80 Q150 20 300 80 T600 80" stroke="#7C3AED" strokeWidth="4" fill="none" />
+				<circle cx="300" cy="80" r="8" fill="#2563EB" />
+			</svg>
+			<svg className="absolute right-0 bottom-0 w-1/2 h-32 opacity-10" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M0 40 Q100 0 200 40 T400 40" stroke="#0EA5E9" strokeWidth="3" fill="none" />
+			</svg>
+		</div>
+	);
+}
+
 const staticResults = [
 	{
 		team: "Team Alpha",
@@ -33,55 +52,56 @@ const staticResults = [
 ];
 
 export function ResultsDisplay() {
-		// Helper functions and animation variants
-		const getPositionIcon = (position: number) => {
-		    switch (position) {
-		        case 1:
-		            return <Trophy className="h-8 w-8 text-yellow-500" />
-		        case 2:
-		            return <Medal className="h-8 w-8 text-gray-400" />
-		        case 3:
-		            return <Award className="h-8 w-8 text-amber-600" />
-		        default:
-		            return <Star className="h-8 w-8 text-blue-500" />
-		    }
+	// Helper functions and animation variants
+	const getPositionIcon = (position: number) => {
+		switch (position) {
+			case 1:
+				return <Trophy className="h-8 w-8 text-yellow-500" />
+			case 2:
+				return <Medal className="h-8 w-8 text-gray-400" />
+			case 3:
+				return <Award className="h-8 w-8 text-amber-600" />
+			default:
+				return <Star className="h-8 w-8 text-blue-500" />
 		}
-		const getPositionGradient = (position: number) => {
-		    switch (position) {
-		        case 1:
-		            return "from-yellow-400 to-yellow-600"
-		        case 2:
-		            return "from-gray-300 to-gray-500"
-		        case 3:
-		            return "from-amber-400 to-amber-600"
-		        default:
-		            return "from-blue-400 to-blue-600"
-		    }
+	}
+	const getPositionGradient = (position: number) => {
+		switch (position) {
+			case 1:
+				return "from-yellow-400 to-yellow-600"
+			case 2:
+				return "from-gray-300 to-gray-500"
+			case 3:
+				return "from-amber-400 to-amber-600"
+			default:
+				return "from-blue-400 to-blue-600"
 		}
-		const containerVariants = {
-		    hidden: { opacity: 0 },
-		    visible: {
-		        opacity: 1,
-		        transition: {
-		            staggerChildren: 0.2,
-		        },
-		    },
-		}
-		const itemVariants = {
-		    hidden: { y: 20, opacity: 0 },
-		    visible: {
-		        y: 0,
-		        opacity: 1,
-		        transition: {
-		            duration: 0.5,
-		        },
-		    },
-		}
+	}
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.2,
+			},
+		},
+	}
+	const itemVariants = {
+		hidden: { y: 20, opacity: 0 },
+		visible: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				duration: 0.5,
+			},
+		},
+	}
 	return (
 		<>
 			<Header />
-			<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-				<div className="container mx-auto px-4 py-16">
+			<BackgroundElements />
+			<div className="min-h-screen">
+				<div className="container mx-auto px-4 py-16 bg-white/40 backdrop-blur-md rounded-3xl shadow-xl">
 					{/* Header */}
 					<motion.div
 						className="text-center mb-16"
@@ -89,9 +109,15 @@ export function ResultsDisplay() {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6 }}
 					>
-						<h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-							SAARTHI'25 Results
-						</h1>
+						<div className="mb-8 text-center">
+							<h1
+								className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent drop-shadow-lg mb-2"
+								style={{ letterSpacing: '0.03em' }}
+							>
+								SAARTHI'25 Results
+							</h1>
+							<div className="mx-auto w-32 h-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-full opacity-70" />
+						</div>
 						<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
 							Celebrating innovation in accessibility technology and inclusive design
 						</p>
@@ -102,7 +128,7 @@ export function ResultsDisplay() {
 					</motion.div>
 
 					{/* Winners Grid */}
-          {/*
+					{/*
 					<motion.div
 						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
 						variants={containerVariants}
@@ -141,11 +167,10 @@ export function ResultsDisplay() {
 							</motion.div>
 						))}
 					</motion.div>
-          */}
-          
+					*/}
 
 					{/* Congratulations Section */}
-          {/*
+					{/*
 					<motion.div
 						className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white"
 						initial={{ opacity: 0, scale: 0.95 }}
@@ -159,7 +184,7 @@ export function ResultsDisplay() {
 							more inclusive and accessible for everyone.
 						</p>
 					</motion.div>
-          */}
+					*/}
 
 					{/* Footer */}
 					<motion.div
