@@ -29,11 +29,11 @@ export default function Header() {
                 Results
               </a>
             </GSAPTextHover>
-            <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-              <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer" className="nav-link-tech">
+            <Button size="lg" className="text-lg px-8 py-3 ml-2" asChild>
+              <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">
                 Register Now
               </a>
-            </GSAPTextHover>
+            </Button>
           </div>
           {/* Animated border glow */}
           <div className="absolute inset-0 pointer-events-none header-glow-border"></div>
