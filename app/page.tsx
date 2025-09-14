@@ -8,11 +8,11 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, MapPin, Users, Trophy, Clock, Mail, Phone, ExternalLink, LogOut } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
-import { LoginModal } from "@/components/auth/login-modal"
+import { Calendar, MapPin, Users, Trophy, Clock, Mail, Phone } from "lucide-react"
 import { GSAPTextHover } from "@/components/effects/gsap-text-hover"
 import { FlipCard } from "@/components/ui/flip-card"
+import Header from "@/components/ui/header"
+import BackgroundElements from "@/components/ui/background-elements"
 
 export default function HomePage() {
   // Contact form state
@@ -22,8 +22,6 @@ export default function HomePage() {
   const [contactLoading, setContactLoading] = useState(false);
   const [contactSuccess, setContactSuccess] = useState("");
   const [contactError, setContactError] = useState("");
-  const { user, userProfile, logout } = useAuth()
-  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -66,90 +64,24 @@ export default function HomePage() {
     },
   }
 
-  const handleRegisterClick = () => {
-    if (user) {
-      if (userProfile?.registrationComplete) {
-        window.location.href = "/dashboard"
-      } else {
-        window.location.href = "/register"
-      }
-    } else {
-      setShowLoginModal(true)
-    }
-  }
+
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b border-border z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg"></div>
-              <GSAPTextHover blendMode="difference" scaleAmount={1.05}>
-                <span className="text-xl font-bold">SARTHI 2025</span>
-              </GSAPTextHover>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
-                  About
-                </a>
-              </GSAPTextHover>
-              <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                <a href="#themes" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Themes
-                </a>
-              </GSAPTextHover>
-              <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                <a href="#schedule" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Schedule
-                </a>
-              </GSAPTextHover>
-              <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                <a href="#prizes" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Prizes
-                </a>
-              </GSAPTextHover>
-              <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                <a href="/results" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Results
-                </a>
-              </GSAPTextHover>
-              <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Contact
-                </a>
-              </GSAPTextHover>
-              {user ? (
-                <div className="flex items-center space-x-4">
-                  <span className="text-sm text-muted-foreground">Welcome, {userProfile?.fullName || user.email}</span>
-                  <Button variant="outline" size="sm" onClick={logout}>
-                    <LogOut className="w-4 h-4 mr-2" />
-                    Logout
-                  </Button>
-                  <Button onClick={handleRegisterClick}>
-                    {userProfile?.registrationComplete ? "Dashboard" : "Complete Registration"}
-                  </Button>
-                </div>
-              ) : (
-                <Button onClick={handleRegisterClick}>Register Now</Button>
-              )}
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      <BackgroundElements />
+      <Header />
+      {/* Navigation (now in Header) */}
 
       {/* Hero Section */}
       <section className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-muted-foreground">
-  Inter-University Hackathon
-</h2>
+              Inter-University Hackathon
+            </h2>
             <GSAPTextHover blendMode="screen" scaleAmount={1.2}>
               <h1 className="text-8xl md:text-9xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                SARTHI 2025
+                SAARTHI'25
               </h1>
             </GSAPTextHover>
             <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto">
@@ -193,12 +125,8 @@ export default function HomePage() {
             </div>
 
             <GSAPTextHover blendMode="multiply" scaleAmount={1.05}>
-              <Button size="lg" className="text-lg px-8 py-6" onClick={handleRegisterClick}>
-                {user
-                  ? userProfile?.registrationComplete
-                    ? "Go to Dashboard"
-                    : "Complete Registration"
-                  : "Register Now"}
+              <Button size="lg" className="text-lg px-8 py-6" asChild>
+                <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">Register Now</a>
               </Button>
             </GSAPTextHover>
           </motion.div>
@@ -209,9 +137,9 @@ export default function HomePage() {
       <section id="about" className="py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About SARTHI 2025</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">About SAARTHI'25</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              SARTHI 2025 is an inter-university hackathon focused on developing innovative technological solutions that
+              SAARTHI'25 is an inter-university hackathon focused on developing innovative technological solutions that
               enhance accessibility and inclusion for persons with disabilities. Join us in creating technology that
               truly serves everyone.
             </p>
@@ -458,79 +386,16 @@ export default function HomePage() {
             <p className="text-lg text-muted-foreground">Celebrating innovation and impact</p>
           </motion.div>
 
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-          >
-            <motion.div variants={fadeInUp}>
-              <Card className="text-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
-                <CardHeader className="pt-8">
-                  <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-                  <CardTitle className="text-2xl">First Place</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-primary">₹50,000</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">Winner trophy, certificates, and mentorship opportunities</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <Card className="text-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-gray-400 to-gray-600"></div>
-                <CardHeader className="pt-8">
-                  <Trophy className="w-16 h-16 text-gray-500 mx-auto mb-4" />
-                  <CardTitle className="text-2xl">Second Place</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-primary">₹30,000</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">Runner-up trophy, certificates, and recognition</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <Card className="text-center relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-600 to-amber-800"></div>
-                <CardHeader className="pt-8">
-                  <Trophy className="w-16 h-16 text-amber-600 mx-auto mb-4" />
-                  <CardTitle className="text-2xl">Third Place</CardTitle>
-                  <CardDescription className="text-3xl font-bold text-primary">₹20,000</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">Third place trophy, certificates, and goodies</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </motion.div>
-
-          <motion.div className="mt-12 text-center" {...fadeInUp}>
-            <Card className="max-w-2xl mx-auto">
-              <CardHeader>
-                <CardTitle>Special Recognition Awards</CardTitle>
+          <motion.div className="flex justify-center" {...fadeInUp}>
+            <Card className="text-center relative overflow-hidden max-w-xl w-full">
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
+              <CardHeader className="pt-12 pb-8">
+                <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-6" />
+                <CardTitle className="text-4xl font-extrabold text-primary">₹1,00,000+</CardTitle>
+                <CardDescription className="text-2xl font-semibold text-muted-foreground mt-2">Prize Pool</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-4 text-left">
-                  <div>
-                    <h4 className="font-semibold">Most Innovative Solution</h4>
-                    <p className="text-sm text-muted-foreground">₹10,000 + Certificate</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Best User Experience</h4>
-                    <p className="text-sm text-muted-foreground">₹10,000 + Certificate</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Social Impact Award</h4>
-                    <p className="text-sm text-muted-foreground">₹10,000 + Certificate</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Best Technical Implementation</h4>
-                    <p className="text-sm text-muted-foreground">₹10,000 + Certificate</p>
-                  </div>
-                </div>
+                <p className="text-lg text-muted-foreground">Exciting cash prizes, trophies, certificates, and special awards for top teams!</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -598,15 +463,15 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted-foreground">Everything you need to know about SARTHI 2025</p>
+            <p className="text-lg text-muted-foreground">Everything you need to know about SAARTHI'25</p>
           </motion.div>
 
           <motion.div {...fadeInUp}>
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1">
-                <AccordionTrigger>Who can participate in SARTHI 2025?</AccordionTrigger>
+                <AccordionTrigger>Who can participate in SAARTHI'25?</AccordionTrigger>
                 <AccordionContent>
-                  SARTHI 2025 is open to all university and college students across India. Both undergraduate and
+                  SAARTHI'25 is open to all university and college students across India. Both undergraduate and
                   postgraduate students can participate. Cross-university teams are encouraged to promote collaboration.
                 </AccordionContent>
               </AccordionItem>
@@ -622,7 +487,7 @@ export default function HomePage() {
               <AccordionItem value="item-3">
                 <AccordionTrigger>Are there any participation fees?</AccordionTrigger>
                 <AccordionContent>
-                  No, SARTHI 2025 is completely free to participate. This includes meals, accommodation (if needed), and
+                  No, SAARTHI'25 is completely free to participate. This includes meals, accommodation (if needed), and
                   all event materials. Our sponsors make this possible to ensure accessibility for all students.
                 </AccordionContent>
               </AccordionItem>
@@ -668,7 +533,7 @@ export default function HomePage() {
                     <Mail className="w-5 h-5 text-primary" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-muted-foreground">sarthi2025@gehu.ac.in</p>
+                      <p className="text-muted-foreground">saarthi@gehu.ac.in</p>
                     </div>
                   </div>
 
@@ -805,9 +670,9 @@ export default function HomePage() {
           <div className="grid md:grid-cols-4 gap-10 md:gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg"></div>
+                <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-8 w-8" />
                 <GSAPTextHover blendMode="difference" scaleAmount={1.05}>
-                  <span className="text-xl font-bold">SARTHI 2025</span>
+                  <span className="text-xl font-bold">SAARTHI'25</span>
                 </GSAPTextHover>
               </div>
               <p className="text-muted text-sm">
@@ -901,13 +766,12 @@ export default function HomePage() {
 
           <div className="border-t border-muted/20 mt-8 pt-8 text-center">
             <p className="text-muted text-sm">
-              © 2025 SARTHI Hackathon. All rights reserved. Organized by Graphic Era Hill University.
+              © 2025 SAARTHI Hackathon. All rights reserved. Organized by Graphic Era Hill University.
             </p>
           </div>
         </div>
       </footer>
 
-      <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
     </div>
   )
 }

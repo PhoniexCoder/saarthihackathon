@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color tokens to match SARTHI 2025 blue-to-purple theme */
+  /* Updated color tokens to match SAARTHI 2025 blue-to-purple theme */
   /* Updated background to use subtle gradient instead of plain white */
   --background: linear-gradient(135deg, oklch(0.99 0.01 264) 0%, oklch(0.98 0.02 285) 100%);
   --foreground: oklch(0.2 0 0); /* Dark gray for primary text */

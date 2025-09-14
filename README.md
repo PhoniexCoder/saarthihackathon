@@ -1,4 +1,4 @@
-# SARTHI 2025 - College Hackathon Portal
+# SAARTHI 2025 - College Hackathon Portal
 
 A comprehensive web application for managing college hackathon registrations, team formations, and submissions.
 
@@ -208,6 +208,6 @@ For support and questions:
 
 ---
 
-**Built with ❤️ for SARTHI 2025**
+**Built with ❤️ for SAARTHI 2025**
 
 

@@ -1,12 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import { AuthProvider } from "@/contexts/auth-context"
 import CustomCursor from "@/components/effects/custom-cursor"
 import BackgroundElements from "@/components/ui/background-elements";
 
 export const metadata: Metadata = {
-  title: "SARTHI 2025 - Inter-University Hackathon",
+  icons: {
+    icon: "/saarthi_log.png",
+    shortcut: "/saarthi_log.png",
+    apple: "/saarthi_log.png",
+  },
+  title: "SAARTHI'25 - Inter-University Hackathon",
   description: "Technology as an Enabler: Innovating Inclusive Solutions for Persons with Disabilities",
 }
 
@@ -20,7 +24,7 @@ export default function RootLayout({
       <body className="font-sans tech-particles">
         <BackgroundElements />
         <CustomCursor />
-        <AuthProvider>{children}</AuthProvider>
+  {children}
       </body>
     </html>
   )
