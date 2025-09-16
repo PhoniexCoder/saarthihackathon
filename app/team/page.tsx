@@ -4,7 +4,6 @@ import Header from "@/components/ui/header";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { GSAPTextHover } from "@/components/effects/gsap-text-hover";
 
-
 type Member = {
   name: string;
   role: string;
@@ -23,74 +22,53 @@ const committees: Committee[] = [
     name: "Convener",
     members: [
       {
-        name: "Prof. (Dr.)Anupam Singh",
+        name: "Prof. (Dr.) Anupam Singh",
         role: "Faculty Coordinator",
-        image: "https://media.licdn.com/dms/image/D4D03AQFQwQwQwQwQw/profile-displayphoto-shrink_200_200/0?e=2147483647&v=beta&t=anupamsingh_real_linkedin_image",
+        image:
+          "https://media.licdn.com/dms/image/D4D03AQFQwQwQwQwQw/profile-displayphoto-shrink_200_200/0?e=2147483647&v=beta&t=anupamsingh_real_linkedin_image",
         linkedin: "https://www.linkedin.com/in/prof-dr-anupam-singh-1a26021a/",
-        about: "Convener and Faculty Coordinator for Saarthi Hackathon. Passionate about technology and innovation in education."
-      }
-    ]
+        about:
+          "Convener and Faculty Coordinator for Saarthi Hackathon. Passionate about technology and innovation in education.",
+      },
+    ],
   },
   {
     name: "Organizing Committee",
     members: [
-      { name: "Dr. Chandradeep Bhatt", role: "Member", image: "/placeholder-user.jpg", about: "Organizing committee member with expertise in event management." },
-      { name: "Dr. Luxmi Sapra", role: "Member", image: "/placeholder-user.jpg", about: "Organizing committee member and academic leader." },
-      { name: "Dr. Himani", role: "Member", image: "/placeholder-user.jpg", about: "Organizing committee member and mentor." },
-      { name: "Mr. Sushant Chamoli", role: "Member", image: "/placeholder-user.jpg", about: "Organizing committee member and operations specialist." }
-    ]
-  },
-  {
-    name: "Sponsorship committee",
-    members: []
-  },
-  {
-    name: "Advertising and outreach committee",
-    members: []
-  },
-  {
-    name: "Finance committee",
-    members: []
-  },
-  {
-    name: "Social media and Design committee",
-    members: [
       {
-        name: "Priya Singh",
-        role: "Student Lead",
-        image: "https://media.licdn.com/dms/image/C4D03AQF1priyasingh/profile-displayphoto-shrink_200_200/0?e=1700000000&v=beta&t=placeholder2",
-        linkedin: "https://linkedin.com/in/priyasingh",
-        about: "Student lead for Saarthi Hackathon, passionate about accessibility and inclusion."
+        name: "Dr. Chandradeep Bhatt",
+        role: "Member",
+        image: "/placeholder-user.jpg",
+        linkedin: "https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0",
+        about: "Organizing committee member with expertise in event management.",
       },
       {
-        name: "Rahul Verma",
-        role: "Design & Outreach",
+        name: "Dr. Luxmi Sapra",
+        role: "Member",
         image: "/placeholder-user.jpg",
-        about: "Handles design and outreach for the event."
-      }
-    ]
+        linkedin: "https://www.linkedin.com/in/dr-luxmi-sapra-b36399168",
+        about: "Organizing committee member and academic leader.",
+      },
+      {
+        name: "Dr. Himani",
+        role: "Member",
+        image: "/placeholder-user.jpg",
+        linkedin: "https://www.linkedin.com/in/himani-maheshwari-aa64281a",
+        about: "Organizing committee member and mentor.",
+      },
+      {
+        name: "Mr. Sushant Chamoli",
+        role: "Member",
+        image: "/placeholder-user.jpg",
+        linkedin: "https://www.linkedin.com/in/sushant-chamoli-33a57550",
+        about: "Organizing committee member and operations specialist.",
+      },
+    ],
   },
-  {
-    name: "Cultural and stage committee",
-    members: []
-  },
-  {
-    name: "Discipline committee",
-    members: []
-  },
-  {
-    name: "Food committee",
-    members: []
-  },
-  {
-    name: "Technical committee",
-    members: []
-  },
-  {
-    name: "Judging committee",
-    members: []
-  }
 ];
+
+export default committees;
+
 
 export default function TeamPage() {
   return (
