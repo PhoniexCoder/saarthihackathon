@@ -34,7 +34,7 @@ const committees: Committee[] = [
   {
     name: "Organizing Committee",
     members: [
-      { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/cd_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/", about: "Organizing committee member with expertise in event management." },
+      { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/CD_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/", about: "Organizing committee member with expertise in event management." },
       { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/placeholder-user.jpg", about: "Organizing committee member and academic leader." },
       { name: "Dr. Himani", role: "Faculty Coordinator", image: "/placeholder-user.jpg", about: "Organizing committee member and mentor." },
       { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg", about: "Organizing committee member and operations specialist." }
