@@ -76,18 +76,18 @@ export default function HomePage() {
       <section className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-muted-foreground">
-              Inter-University Hackathon
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-bold mb-4 text-muted-foreground">
+              National Level Hackathon
             </h2>
             <GSAPTextHover blendMode="screen" scaleAmount={1.2}>
-              <h1 className="text-8xl md:text-9xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 SAARTHI'25
               </h1>
             </GSAPTextHover>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto">
+            <p className="text-base sm:text-lg md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto">
               Technology as an Enabler: Innovating Inclusive Solutions for Persons with Disabilities
             </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8 text-muted-foreground">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 <span>8th - 9th November 2025</span>
@@ -99,33 +99,46 @@ export default function HomePage() {
             </div>
 
             {/* Countdown Timer */}
-            <div className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-8">
-              {Object.entries(timeLeft).map(([unit, value]) => (
-                <FlipCard
-                  key={unit + value} // Key changes when value changes, triggering animation
-                  className="h-24 w-full"
-                  front={
-                    <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
-                      <CardContent className="p-0">
-                        <div className="text-2xl md:text-3xl font-bold text-primary">{value}</div>
-                        <div className="text-sm text-muted-foreground capitalize">{unit}</div>
-                      </CardContent>
-                    </Card>
+            <div className="flex flex-row gap-4 max-w-2xl mx-auto mb-8 justify-center items-center flex-wrap sm:flex-nowrap">
+              {Object.entries(timeLeft).map(([unit, value], idx) => {
+                // Only animate the seconds card every second
+                const [prev, setPrev] = useState(value);
+                const [rotation, setRotation] = useState(0);
+                useEffect(() => {
+                  if (prev !== value) {
+                    setRotation(r => r + 180);
+                    setPrev(value);
                   }
-                  back={
-                    <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
-                      <CardContent className="p-0">
-                        <div className="text-2xl md:text-3xl font-bold text-primary">{value}</div>
-                        <div className="text-sm text-muted-foreground capitalize">{unit}</div>
-                      </CardContent>
-                    </Card>
-                  }
-                />
-              ))}
+                }, [value]);
+                return (
+                  <FlipCard
+                    key={unit}
+                    className="h-24 w-20 min-w-[5rem]"
+                    rotation={rotation}
+                    axis="y"
+                    front={
+                      <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
+                        <CardContent className="p-0">
+                          <div className="text-2xl md:text-3xl font-bold text-primary">{value}</div>
+                          <div className="text-sm text-muted-foreground capitalize">{unit}</div>
+                        </CardContent>
+                      </Card>
+                    }
+                    back={
+                      <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
+                        <CardContent className="p-0">
+                          <div className="text-2xl md:text-3xl font-bold text-primary">{value}</div>
+                          <div className="text-sm text-muted-foreground capitalize">{unit}</div>
+                        </CardContent>
+                      </Card>
+                    }
+                  />
+                );
+              })}
             </div>
 
             <GSAPTextHover blendMode="multiply" scaleAmount={1.05}>
-              <Button size="lg" className="text-lg px-8 py-6" asChild>
+              <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6" asChild>
                 <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">Register Now</a>
               </Button>
             </GSAPTextHover>
@@ -134,9 +147,9 @@ export default function HomePage() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-muted/30">
+  <section id="about" className="py-14 sm:py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
+          <motion.div className="text-center mb-10 sm:mb-16" {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About SAARTHI'25</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               SAARTHI'25 is an inter-university hackathon focused on developing innovative technological solutions that
@@ -146,7 +159,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"

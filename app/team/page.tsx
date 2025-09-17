@@ -35,9 +35,9 @@ const committees: Committee[] = [
     name: "Organizing Committee",
     members: [
       { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/CD_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/", about: "Organizing committee member with expertise in event management." },
-      { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/placeholder-user.jpg", about: "Organizing committee member and academic leader." },
-      { name: "Dr. Himani", role: "Faculty Coordinator", image: "/placeholder-user.jpg", about: "Organizing committee member and mentor." },
-      { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg", about: "Organizing committee member and operations specialist." }
+      { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/placeholder-user.jpg",linkedin:"https://www.linkedin.com/in/dr-luxmi-sapra-b36399168/", about: "Organizing committee member and academic leader." },
+      { name: "Dr. Himani Maheshwari", role: "Faculty Coordinator", image: "/placeholder-user.jpg",linkedin:"https://www.linkedin.com/in/himani-maheshwari-aa64281a", about: "Organizing committee member and mentor." },
+      { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg",linkedin:"https://www.linkedin.com/in/sushant-chamoli-33a57550/", about: "Organizing committee member and operations specialist." }
     ]
   },
   {

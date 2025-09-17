@@ -5,29 +5,28 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface FlipCardProps {
-  front: React.ReactNode
-  back: React.ReactNode
-  className?: string
+  front: React.ReactNode;
+  back: React.ReactNode;
+  className?: string;
+  axis?: "x" | "y";
+  rotation?: number;
 }
 
-export function FlipCard({ front, back, className }: FlipCardProps) {
-  const [isFlipped, setIsFlipped] = useState(false)
-
-  const handleFlip = () => {
-    setIsFlipped(!isFlipped)
-  }
-
+export function FlipCard({ front, back, className, axis = "y", rotation = 0 }: FlipCardProps) {
+  // axis: "x" for vertical (top-bottom), "y" for horizontal (left-right)
+  const animate = axis === "x"
+    ? { rotateX: rotation }
+    : { rotateY: rotation };
   return (
     <motion.div
-      className={cn("relative w-full h-full cursor-pointer", className)}
-      onClick={handleFlip}
+      className={cn("relative w-full h-full", className)}
       style={{ perspective: 1000 }}
     >
       <motion.div
         className="relative w-full h-full"
         initial={false}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6, animationDirection: "normal" }}
+        animate={animate}
+        transition={{ duration: 0.6 }}
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front side */}
@@ -36,10 +35,10 @@ export function FlipCard({ front, back, className }: FlipCardProps) {
         </div>
 
         {/* Back side */}
-        <div className="absolute w-full h-full rotate-y-180 backface-hidden">
+        <div className={axis === "x" ? "absolute w-full h-full rotate-x-180 backface-hidden" : "absolute w-full h-full rotate-y-180 backface-hidden"}>
           {back}
         </div>
       </motion.div>
     </motion.div>
-  )
+  );
 }

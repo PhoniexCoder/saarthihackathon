@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     shortcut: "/saarthi_log.png",
     apple: "/saarthi_log.png",
   },
-  title: "SAARTHI'25 - Inter-University Hackathon",
+  title: "SAARTHI'25 - National Level Hackathon",
   description: "Technology as an Enabler: Innovating Inclusive Solutions for Persons with Disabilities",
 }
 
