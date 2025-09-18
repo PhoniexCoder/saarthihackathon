@@ -32,7 +32,7 @@ export default function GuidelinesPage() {
               <ul className="list-disc list-inside space-y-2 text-base text-muted-foreground ml-2">
                 <li>Open to students from recognized universities across India.</li>
                 <li>Participants must be enrolled in UG or PG programs in CS, IT, or allied disciplines.</li>
-                <li>Team size: Minimum 3, Maximum 4 members.</li>
+                <li>Team size: Minimum 2, Maximum 4 members.</li>
                 <li>Cross-disciplinary teams are encouraged.</li>
               </ul>
             </CardContent>

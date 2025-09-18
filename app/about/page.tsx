@@ -132,7 +132,7 @@ export default function AboutPage() {
               <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2">
                 <h3 className="text-xl font-semibold text-primary mb-2">Why GEHU?</h3>
                 <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200">
-                  <li className="flex items-center gap-2"><span>🌐</span>5,400+ students enrolled across diverse disciplines</li>
+                  <li className="flex items-center gap-2"><span>🌐</span>10,000+ students enrolled across diverse disciplines</li>
                   <li className="flex items-center gap-2"><span>🤖</span>Focus on AI, Blockchain, Renewable Energy, and Med-Tech</li>
                   <li className="flex items-center gap-2"><span>🚀</span>Active startup incubation and mentorship programs</li>
                   <li className="flex items-center gap-2"><span>🌍</span>Participation in national and international collaborations</li>
@@ -146,43 +146,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
-        {/* IEEE Student Branch, GEHU */}
-        <div className="w-full flex flex-col items-center">
-          <div className="w-full flex flex-col md:flex-row-reverse items-center gap-10 bg-white/90 dark:bg-white/10 rounded-3xl shadow-2xl border border-white/30 p-0 md:p-0 overflow-hidden">
-            {/* Image Section */}
-            <div className="flex-1 flex justify-center items-stretch min-h-[320px] bg-gradient-to-br from-blue-100 via-white to-pink-100">
-              <img
-                src="/ieee-gehu.jpg"
-                alt="IEEE Student Branch GEHU"
-                className="object-contain w-full h-full max-h-[340px] p-6"
-                style={{ background: "white" }}
-              />
-            </div>
-            {/* Content Section */}
-            <div className="flex-1 flex flex-col justify-center gap-4 p-8 md:p-12">
-              <h2 className="text-2xl font-extrabold text-primary mb-2 flex items-center gap-2">
-                🤝 About IEEE Student Branch, GEHU
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                The <span className="font-semibold text-primary">IEEE Student Branch at GEHU</span> is a dynamic platform for students to explore emerging technologies and professional growth. Through workshops, hackathons, coding competitions, and research initiatives, IEEE-SB GEHU empowers students with hands-on experience and global exposure.
-              </p>
-              <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2">
-                <h3 className="text-xl font-semibold text-primary mb-2">Highlights</h3>
-                <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200">
-                  <li className="flex items-center gap-2"><span>🧠</span>Hosts technical talks, innovation challenges, and mentorship sessions</li>
-                  <li className="flex items-center gap-2"><span>🔗</span>Fosters collaboration, networking, and leadership development</li>
-                  <li className="flex items-center gap-2"><span>🌐</span>Organizes AutoCom, an international conference on automation and computation</li>
-                  <li className="flex items-center gap-2"><span>💡</span>Focus areas include AI, cybersecurity, and assistive technologies</li>
-                </ul>
-              </div>
-              <p className="text-base text-muted-foreground mt-2">
-                IEEE-SB GEHU is committed to nurturing future engineers and innovators by promoting cutting-edge research and meaningful collaborations.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* ...rest of your about page (prizes, call to action, etc.)... */}
       </section>
       <Footer />
     </div>
