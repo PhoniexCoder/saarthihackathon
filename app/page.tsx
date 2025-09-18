@@ -138,7 +138,6 @@ export default function HomePage() {
     <div className="min-h-screen bg-background relative overflow-hidden">
       <BackgroundElements />
       <Header />
-      {/* Navigation (now in Header) */}
 
       {/* Hero Section */}
       <section className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted">
@@ -281,80 +280,141 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
 
-          {/* Tracks Section */}
-          <div className="mt-16">
-            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-primary">Tracks</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  icon: "🎓",
-                  title: "Track 1: Inclusive Education & Learning",
-                  desc: "Accessible learning portals, quiz/assessment systems, and e-classrooms.",
-                  features: "Features: screen-reader friendly notes, adjustable timers, text-to-speech, transcripts.",
-                  border: "border-blue-400"
-                },
-                {
-                  icon: "🛍",
-                  title: "Track 2: Accessible Digital Commerce & Services",
-                  desc: "Inclusive e-commerce sites, banking, ticket booking, and government services.",
-                  features: "Features: accessible checkout, alternative payment flows, voice-based interactions.",
-                  border: "border-pink-400"
-                },
-                {
-                  icon: "📺",
-                  title: "Track 3: Media, Communication & Expression",
-                  desc: "Websites for accessible news, entertainment, and communication.",
-                  features: "Features: captions, transcripts, audio descriptions, sign-language integration.",
-                  border: "border-yellow-400"
-                },
-                {
-                  icon: "🧭",
-                  title: "Track 4: Navigation & Mobility on the Web",
-                  desc: "Maps, travel booking, and location-based services made accessible.",
-                  features: "Features: text-based route descriptions, high-contrast maps, voice-guided navigation.",
-                  border: "border-green-400"
-                },
-                {
-                  icon: "🖥",
-                  title: "Track 5: Core Web Accessibility & Assistive Tech Integration",
-                  desc: "Building websites that align with WCAG standards and work with assistive technologies.",
-                  features: "Focus: keyboard navigation, ARIA usage, semantic HTML, compatibility with screen readers, braille displays, and switch devices.",
-                  border: "border-purple-400"
-                },
-                {
-                  icon: "👀",
-                  title: "Track 6: Visual, Hearing & Cognitive Accessibility",
-                  desc: "Personalization features for users with visual, hearing, or cognitive challenges.",
-                  features: "Features: high-contrast & dyslexia-friendly modes, adjustable text size, simplified content, plain language summaries.",
-                  border: "border-indigo-400"
-                },
-                {
-                  icon: "🌐",
-                  title: "Track 7: Multilingual & Cultural Inclusivity",
-                  desc: "Making the web accessible across languages, scripts, and cultural contexts.",
-                  features: "Features: language toggles, RTL (right-to-left) support, local-language TTS/voice commands.",
-                  border: "border-cyan-400"
-                },
-                {
-                  icon: "💡",
-                  title: "Track 8: Open Innovation for Disabilities & Accessibility",
-                  desc: "Any creative solution that addresses challenges faced by persons with disabilities and promotes accessibility.",
-                  features: "Examples: novel assistive devices, inclusive apps, awareness platforms, or any impactful idea that doesn't fit other tracks.",
-                  border: "border-orange-400"
-                }
-              ].map((track, idx) => (
+      {/* Tracks Section (move this OUTSIDE of Themes Section) */}
+      <section id="tracks" className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-primary">
+            Tracks
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                icon: "🚶",
+                title: "Track 1: Smart Mobility & Navigation",
+                desc: "IoT-based smart canes, wheelchair automation with sensors, wearable haptic bands for navigation.",
+                features:
+                  "Hardware: Smart mobility devices | Software: AI obstacle detection, AR/VR navigation systems",
+                border: "border-green-400",
+              },
+              {
+                icon: "🎓",
+                title: "Track 2: Inclusive Education Tools",
+                desc: "Refreshable Braille displays, tactile tablets, 3D printed learning aids.",
+                features:
+                  "Hardware: Educational devices | Software: AI-driven personalized learning, AR/VR immersive education",
+                border: "border-blue-400",
+              },
+              {
+                icon: "👀",
+                title: "Track 3: Visual, Hearing & Cognitive Accessibility",
+                desc: "Personalization features for users with visual, hearing, or cognitive challenges.",
+                features:
+                  "Features: high-contrast & dyslexia-friendly modes, adjustable text size, simplified content, plain language summaries.",
+                border: "border-indigo-400",
+              },
+              {
+                icon: "🖥",
+                title: "Track 4: Core Web Accessibility & Assistive Tech Integration",
+                desc: "Building websites that align with WCAG standards and work with assistive technologies.",
+                features:
+                  "Focus: keyboard navigation, ARIA usage, semantic HTML, compatibility with screen readers, braille displays, and switch devices.",
+                border: "border-purple-400",
+              },
+              {
+                icon: "📡",
+                title: "Track 5: IoT for Accessibility",
+                desc: "Leverage IoT to create connected environments for independent living.",
+                features:
+                  "Examples: smart home automation, voice-controlled appliances, sensor-based alerts, remote monitoring.",
+                border: "border-pink-400",
+              },
+              {
+                icon: "🌐",
+                title: "Track 6: Multilingual & Cultural Inclusivity",
+                desc: "Making the web accessible across languages, scripts, and cultural contexts.",
+                features:
+                  "Features: language toggles, RTL (right-to-left) support, local-language TTS/voice commands.",
+                border: "border-cyan-400",
+              },
+              {
+                icon: "🩺",
+                title: "Track 7: Healthcare & Rehabilitation Technologies",
+                desc: "Prosthetics with sensors, robotic exoskeletons, wearable health trackers.",
+                features:
+                  "Hardware: smart prosthetics | Software: AI-driven physiotherapy apps, VR-based rehabilitation.",
+                border: "border-red-400",
+              },
+              {
+                icon: "💼",
+                title: "Track 8: Employment & Workplace Accessibility",
+                desc: "Tools that make workplaces more inclusive for persons with disabilities.",
+                features:
+                  "Hardware: adaptive keyboards | Software: accessibility testing tools, job-matching platforms.",
+                border: "border-teal-400",
+              },
+              {
+                icon: "🏠",
+                title: "Track 9: Daily Living Assistance & Smart Homes",
+                desc: "IoT-enabled home automation for independent living.",
+                features:
+                  "Examples: voice/haptic controlled appliances, remote caregiver monitoring systems.",
+                border: "border-rose-400",
+              },
+              {
+                icon: "📢",
+                title: "Track 10: Policy, Awareness & Community Solutions",
+                desc: "Platforms and tools to promote accessibility awareness and rights.",
+                features:
+                  "Examples: accessibility auditing tools, advocacy platforms, volunteer networks.",
+                border: "border-emerald-400",
+              },
+              {
+                icon: "💡",
+                title: "Track 11: Open Innovation for Disabilities & Accessibility",
+                desc: "Any creative solution that addresses challenges faced by persons with disabilities and promotes accessibility.",
+                features:
+                  "Examples: novel assistive devices, inclusive apps, awareness platforms, or any impactful idea that doesn't fit other tracks.",
+                border: "border-orange-400",
+              },
+            ].map((track, idx, arr) => {
+              // For the last card, if odd number of tracks, center it
+              if (idx === arr.length - 1 && arr.length % 2 !== 0) {
+                return (
+                  <div
+                    key={idx}
+                    className={`md:col-span-2 flex justify-center`}
+                  >
+                    <div
+                      className={`relative bg-gradient-to-br from-white via-blue-50 to-pink-50 rounded-xl shadow-xl p-6 flex flex-col gap-3 border-l-8 ${track.border} hover:scale-[1.03] hover:shadow-2xl transition-transform duration-300 max-w-xl w-full`}
+                    >
+                      <span className="text-4xl mb-2 drop-shadow-lg">{track.icon}</span>
+                      <h4 className="font-extrabold text-lg md:text-xl text-primary mb-1">
+                        {track.title}
+                      </h4>
+                      <p className="text-base text-gray-700 mb-1">{track.desc}</p>
+                      <p className="text-sm text-muted-foreground">{track.features}</p>
+                    </div>
+                  </div>
+                );
+              }
+              // Default card
+              return (
                 <div
                   key={idx}
                   className={`relative bg-gradient-to-br from-white via-blue-50 to-pink-50 rounded-xl shadow-xl p-6 flex flex-col gap-3 border-l-8 ${track.border} hover:scale-[1.03] hover:shadow-2xl transition-transform duration-300`}
                 >
                   <span className="text-4xl mb-2 drop-shadow-lg">{track.icon}</span>
-                  <h4 className="font-extrabold text-lg md:text-xl text-primary mb-1">{track.title}</h4>
+                  <h4 className="font-extrabold text-lg md:text-xl text-primary mb-1">
+                    {track.title}
+                  </h4>
                   <p className="text-base text-gray-700 mb-1">{track.desc}</p>
                   <p className="text-sm text-muted-foreground">{track.features}</p>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -413,7 +473,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Judges Section */}
+      {/* Judges Section 
       <section id="judges" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -426,9 +486,7 @@ export default function HomePage() {
                 key={idx}
                 className="relative bg-gradient-to-br from-blue-50 via-white to-purple-100 rounded-3xl shadow-2xl flex flex-col items-center p-8 transition-transform hover:-translate-y-3 hover:shadow-blue-300/40 hover:shadow-2xl duration-300 group overflow-hidden"
               >
-                {/* Glow ring */}
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-40 h-40 bg-gradient-to-tr from-blue-400 via-purple-400 to-pink-400 opacity-30 blur-2xl rounded-full z-0"></div>
-                {/* Avatar with border and floating effect */}
                 <div className="relative z-10 mb-4">
                   <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-primary shadow-lg ring-4 ring-blue-200 group-hover:ring-pink-200 transition-all duration-300 bg-white">
                     <img
@@ -438,19 +496,17 @@ export default function HomePage() {
                     />
                   </div>
                 </div>
-                {/* Card content */}
                 <div className="text-center z-10">
                   <div className="font-extrabold text-xl text-gray-900 mb-1 group-hover:text-primary transition-colors duration-300">{judge.name}</div>
                   <div className="text-primary font-medium mb-1">{judge.role}</div>
                   <div className="text-muted-foreground text-sm">{judge.company}</div>
                 </div>
-                {/* Decorative bottom bar */}
                 <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-b-3xl opacity-80"></div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section>*/}
 
 
       {/* FAQ Section */}
@@ -661,5 +717,5 @@ export default function HomePage() {
 
       <Footer />
     </div>
-  )
+  );
 }
