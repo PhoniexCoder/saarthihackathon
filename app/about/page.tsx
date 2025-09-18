@@ -29,9 +29,9 @@ export default function AboutPage() {
         {/* What is SARTHI & Objectives */}
         <div className="w-full flex flex-col lg:flex-row gap-10 items-stretch justify-center">
           <div className="flex-1 min-w-[340px] rounded-2xl bg-white/80 dark:bg-white/10 shadow-md border border-white/30 p-7 md:p-10 flex flex-col items-center text-center mb-4 lg:mb-0">
-            <h2 className="text-3xl font-bold mb-3 text-primary">What is SARTHI?</h2>
+            <h2 className="text-3xl font-bold mb-3 text-primary">What is SAARTHI?</h2>
             <p className="text-lg md:text-xl text-muted-foreground">
-              SARTHI is a 24-hour national-level hackathon hosted by Graphic Era Hill University, designed to foster inclusive innovation for Persons with Disabilities (PwDs). It brings together interdisciplinary teams to build tech-driven solutions that empower lives and promote accessibility.
+              SAARTHI is a 24-hour national-level hackathon hosted by Graphic Era Hill University, designed to foster inclusive innovation for Persons with Disabilities (PwDs). It brings together interdisciplinary teams to build tech-driven solutions that empower lives and promote accessibility.
             </p>
           </div>
           <div className="flex-1 min-w-[340px] rounded-2xl bg-white/80 dark:bg-white/10 shadow-md border border-white/30 p-5 md:p-6 flex flex-col items-center text-center justify-center min-h-0">
