@@ -502,7 +502,7 @@ export default function HomePage() {
 
       {/* Collaborate With Us Section */}
       <section id="collaborate" className="py-16">
-        <div className="max-w-xl mx-auto px-4">
+        <div className="max-w-2xl mx-auto px-4">
           <motion.div
             {...fadeInUp}
             className="rounded-2xl shadow-xl border-2 border-primary bg-white/95 flex flex-col items-center p-8"
@@ -562,7 +562,7 @@ export default function HomePage() {
               <AccordionItem value="item-3">
                 <AccordionTrigger>Are there any participation fees?</AccordionTrigger>
                 <AccordionContent>
-                  A nominal participation fee of ₹600 per participant is applicable for teams qualifying for the final round, to be paid online by 1st November 2025.
+                  Participation in the first round (PPT submission) is completely free. Teams shortlisted for the final round will be required to pay a nominal participation fee of ₹600, to be submitted online by 1st November 2025.
                 </AccordionContent>
               </AccordionItem>
 
