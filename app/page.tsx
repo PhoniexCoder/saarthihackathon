@@ -281,6 +281,81 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Tracks Section */}
+          <div className="mt-16">
+            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center text-primary">Tracks</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  icon: "🎓",
+                  title: "Track 1: Inclusive Education & Learning",
+                  desc: "Accessible learning portals, quiz/assessment systems, and e-classrooms.",
+                  features: "Features: screen-reader friendly notes, adjustable timers, text-to-speech, transcripts.",
+                  border: "border-blue-400"
+                },
+                {
+                  icon: "🛍",
+                  title: "Track 2: Accessible Digital Commerce & Services",
+                  desc: "Inclusive e-commerce sites, banking, ticket booking, and government services.",
+                  features: "Features: accessible checkout, alternative payment flows, voice-based interactions.",
+                  border: "border-pink-400"
+                },
+                {
+                  icon: "📺",
+                  title: "Track 3: Media, Communication & Expression",
+                  desc: "Websites for accessible news, entertainment, and communication.",
+                  features: "Features: captions, transcripts, audio descriptions, sign-language integration.",
+                  border: "border-yellow-400"
+                },
+                {
+                  icon: "🧭",
+                  title: "Track 4: Navigation & Mobility on the Web",
+                  desc: "Maps, travel booking, and location-based services made accessible.",
+                  features: "Features: text-based route descriptions, high-contrast maps, voice-guided navigation.",
+                  border: "border-green-400"
+                },
+                {
+                  icon: "🖥",
+                  title: "Track 5: Core Web Accessibility & Assistive Tech Integration",
+                  desc: "Building websites that align with WCAG standards and work with assistive technologies.",
+                  features: "Focus: keyboard navigation, ARIA usage, semantic HTML, compatibility with screen readers, braille displays, and switch devices.",
+                  border: "border-purple-400"
+                },
+                {
+                  icon: "👀",
+                  title: "Track 6: Visual, Hearing & Cognitive Accessibility",
+                  desc: "Personalization features for users with visual, hearing, or cognitive challenges.",
+                  features: "Features: high-contrast & dyslexia-friendly modes, adjustable text size, simplified content, plain language summaries.",
+                  border: "border-indigo-400"
+                },
+                {
+                  icon: "🌐",
+                  title: "Track 7: Multilingual & Cultural Inclusivity",
+                  desc: "Making the web accessible across languages, scripts, and cultural contexts.",
+                  features: "Features: language toggles, RTL (right-to-left) support, local-language TTS/voice commands.",
+                  border: "border-cyan-400"
+                },
+                {
+                  icon: "💡",
+                  title: "Track 8: Open Innovation for Disabilities & Accessibility",
+                  desc: "Any creative solution that addresses challenges faced by persons with disabilities and promotes accessibility.",
+                  features: "Examples: novel assistive devices, inclusive apps, awareness platforms, or any impactful idea that doesn't fit other tracks.",
+                  border: "border-orange-400"
+                }
+              ].map((track, idx) => (
+                <div
+                  key={idx}
+                  className={`relative bg-gradient-to-br from-white via-blue-50 to-pink-50 rounded-xl shadow-xl p-6 flex flex-col gap-3 border-l-8 ${track.border} hover:scale-[1.03] hover:shadow-2xl transition-transform duration-300`}
+                >
+                  <span className="text-4xl mb-2 drop-shadow-lg">{track.icon}</span>
+                  <h4 className="font-extrabold text-lg md:text-xl text-primary mb-1">{track.title}</h4>
+                  <p className="text-base text-gray-700 mb-1">{track.desc}</p>
+                  <p className="text-sm text-muted-foreground">{track.features}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
