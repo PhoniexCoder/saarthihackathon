@@ -50,11 +50,10 @@ const judges = [
 // Timeline data should be an array, not an object
 const timeline = [
   { date: "25 Sept 2025", event: "Hackathon goes live on Unstop platform" },
-  { date: "1 Oct 2025", event: "Participant registration opens" },
-  { date: "5 Oct 2025", event: "PPT submission begins (Idea Proposal)" },
-  { date: "20 Oct 2025", event: "PPT submission closes" },
-  { date: "25 Oct 2025", event: "Results of PPT round announced" },
-  { date: "1 Nov 2025", event: "Final registration fee payment" },
+  { date: "1 Oct 2025", event: "Participant registration opens and PPT submissions Begins" },
+  { date: "10 Oct 2025", event: "PPT submission closes" },
+  { date: "15 Oct 2025", event: "Results of PPT round announced" },
+  { date: "20 Oct 2025", event: "Final registration fee payment" },
   { date: "5 Nov 2025", event: "Submission of NOC and ID proof (soft copy)" },
   { date: "8-9 Nov 2025", event: "National-level Hackathon at GEHU, Dehradun" },
 ];

@@ -43,9 +43,9 @@ const committees: Committee[] = [
   {
     name: "Student Committee",
     members: [
-      { name: "Anshul Panwar", role: "Student Member", image: "/AP.jpg", linkedin: "https://www.linkedin.com/in/anshulpanwar", about: "Lead organizer coordinating all student activities." },
+      { name: "Anshul Panwar", role: "Student Member", image: "/AP.jpg", linkedin: "https://www.linkedin.com/in/anshul-panwar-21aa3233b/", about: "Lead organizer coordinating all student activities." },
       { name: "Srishti Rana", role: "Student Member", image: "/SR.jpg", linkedin: "https://www.linkedin.com/in/srishti-rana-ab4641305/", about: "B.Tech CSE (AI-DS) | AI and Data Science Practitioner" },
-      { name: "Prins Kanyal", role: "Student Member", image: "/placeholder-user.jpg", linkedin: "https://www.linkedin.com/in/catherinelee", about: "Handling sponsorships and partnerships." },
+      { name: "Prins Kanyal", role: "Student Member", image: "/placeholder-user.jpg", linkedin: "https://www.linkedin.com/in/prins-kanyal", about: "Handling sponsorships and partnerships." },
       { name: "Priyanshu", role: "Student Member", image: "/placeholder-user.jpg", linkedin: "https://www.linkedin.com/in/davidkim", about: "Overseeing marketing and promotions." }
     ]
   }
