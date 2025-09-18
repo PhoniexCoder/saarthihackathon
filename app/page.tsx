@@ -168,7 +168,7 @@ export default function HomePage() {
             {/* Add this below the date/location */}
             <div className="mb-8">
               <span className="block text-primary font-semibold text-base sm:text-lg">
-                Organised by Department of Computer Science and Engineering and School of Computing, GEHU
+                Organised by Department of Computer Science & Engineering and School of Computing, GEHU
               </span>
             </div>
             
