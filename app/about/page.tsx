@@ -11,8 +11,9 @@ export default function AboutPage() {
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 },
   };
+
   return (
-    <div className="min-h-screen bg-background flex flex-col min-h-screen">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
       <section className="flex-1 max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-[80vh] gap-16">
         {/* Hero / Intro */}
@@ -43,25 +44,6 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
-
-        {/* Prizes & Recognition Section */}
-        <motion.div className="text-center mb-16" {...fadeInUp}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Prizes & Recognition</h2>
-          <p className="text-lg text-muted-foreground">Celebrating innovation and impact</p>
-        </motion.div>
-        <motion.div className="flex justify-center" {...fadeInUp}>
-          <Card className="text-center relative overflow-hidden max-w-xl w-full">
-            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
-            <CardHeader className="pt-12 pb-8">
-              <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-6" />
-              <CardTitle className="text-4xl font-extrabold text-primary">₹1,00,000+</CardTitle>
-              <CardDescription className="text-2xl font-semibold text-muted-foreground mt-2">Prize Pool</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-lg text-muted-foreground">Exciting cash prizes, trophies, certificates, and special awards for top teams!</p>
-            </CardContent>
-          </Card>
-        </motion.div>
 
         {/* Event Highlights */}
   <div className="w-full rounded-2xl bg-white/70 dark:bg-white/10 shadow-md border border-white/30 p-8 md:p-16 flex flex-col items-center text-center">
@@ -103,17 +85,106 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Prizes & Recognition Section */}
+        <motion.div className="text-center mb-4" {...fadeInUp}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Prizes & Recognition</h2>
+          <p className="text-lg text-muted-foreground">Celebrating innovation and impact</p>
+        </motion.div>
+        <motion.div className="flex justify-center" {...fadeInUp}>
+          <Card className="text-center relative overflow-hidden max-w-xl w-full">
+            <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
+            <CardHeader className="pt-12 pb-8">
+              <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-6" />
+              <CardTitle className="text-4xl font-extrabold text-primary">₹1,00,000+</CardTitle>
+              <CardDescription className="text-2xl font-semibold text-muted-foreground mt-2">Prize Pool</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-lg text-muted-foreground">Exciting cash prizes, trophies, certificates, and special awards for top teams!</p>
+            </CardContent>
+          </Card>
+        </motion.div>
+
         {/* Call to Action */}
         <div className="w-full flex flex-col items-center text-center mt-8">
           <h3 className="text-2xl md:text-3xl font-bold mb-3 text-primary">Ready to make an impact?</h3>
           <p className="text-muted-foreground mb-4 max-w-xl mx-auto">Join us at SAARTHI'25, collaborate with brilliant minds, and help shape a more accessible future for everyone.</p>
           <a href="/register" className="inline-block px-8 py-3 rounded-full bg-primary text-white font-semibold shadow-lg hover:bg-primary/90 transition">Register for SAARTHI'25</a>
         </div>
-      </section>
 
+        {/* About Graphic Era Hill University */}
+        <div className="w-full flex flex-col items-center">
+          <div className="w-full flex flex-col md:flex-row items-center gap-10 bg-white/90 dark:bg-white/10 rounded-3xl shadow-2xl border border-white/30 p-0 md:p-0 overflow-hidden">
+            {/* Image Section */}
+            <div className="flex-1 flex justify-center items-stretch min-h-[320px] bg-gradient-to-br from-blue-100 via-white to-pink-100">
+              <img
+                src="/gehu_campus.png"
+                alt="Graphic Era Hill University Campus"
+                className="object-contain w-full h-full max-h-[340px] p-6"
+                style={{ background: "white" }}
+              />
+            </div>
+            {/* Content Section */}
+            <div className="flex-1 flex flex-col justify-center gap-4 p-8 md:p-12">
+              <h2 className="text-3xl font-extrabold text-primary mb-2">About Graphic Era Hill University</h2>
+              <p className="text-lg text-muted-foreground">
+                <span className="font-semibold text-primary">Graphic Era Hill University (GEHU)</span> is a premier institution nestled in the Himalayan region, founded by Prof. (Dr.) Kamal Ghanshala with a vision to redefine higher education through innovation and determination. Recognized by the University Grants Commission (UGC), GEHU offers multidisciplinary programs that emphasize research, entrepreneurship, and holistic development.
+              </p>
+              <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2">
+                <h3 className="text-xl font-semibold text-primary mb-2">Why GEHU?</h3>
+                <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200">
+                  <li className="flex items-center gap-2"><span>🌐</span>5,400+ students enrolled across diverse disciplines</li>
+                  <li className="flex items-center gap-2"><span>🤖</span>Focus on AI, Blockchain, Renewable Energy, and Med-Tech</li>
+                  <li className="flex items-center gap-2"><span>🚀</span>Active startup incubation and mentorship programs</li>
+                  <li className="flex items-center gap-2"><span>🌍</span>Participation in national and international collaborations</li>
+                  <li className="flex items-center gap-2"><span>🏛️</span>Modern infrastructure, expert faculty, and strong industry linkages</li>
+                  <li className="flex items-center gap-2"><span>🌟</span>Alumni making global impact in top organizations</li>
+                </ul>
+              </div>
+              <p className="text-base text-muted-foreground mt-2">
+                GEHU continues to inspire excellence by combining innovation, ethics, and leadership to prepare students for the challenges of tomorrow.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* IEEE Student Branch, GEHU */}
+        <div className="w-full flex flex-col items-center">
+          <div className="w-full flex flex-col md:flex-row-reverse items-center gap-10 bg-white/90 dark:bg-white/10 rounded-3xl shadow-2xl border border-white/30 p-0 md:p-0 overflow-hidden">
+            {/* Image Section */}
+            <div className="flex-1 flex justify-center items-stretch min-h-[320px] bg-gradient-to-br from-blue-100 via-white to-pink-100">
+              <img
+                src="/ieee-gehu.jpg"
+                alt="IEEE Student Branch GEHU"
+                className="object-contain w-full h-full max-h-[340px] p-6"
+                style={{ background: "white" }}
+              />
+            </div>
+            {/* Content Section */}
+            <div className="flex-1 flex flex-col justify-center gap-4 p-8 md:p-12">
+              <h2 className="text-2xl font-extrabold text-primary mb-2 flex items-center gap-2">
+                🤝 About IEEE Student Branch, GEHU
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                The <span className="font-semibold text-primary">IEEE Student Branch at GEHU</span> is a dynamic platform for students to explore emerging technologies and professional growth. Through workshops, hackathons, coding competitions, and research initiatives, IEEE-SB GEHU empowers students with hands-on experience and global exposure.
+              </p>
+              <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2">
+                <h3 className="text-xl font-semibold text-primary mb-2">Highlights</h3>
+                <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200">
+                  <li className="flex items-center gap-2"><span>🧠</span>Hosts technical talks, innovation challenges, and mentorship sessions</li>
+                  <li className="flex items-center gap-2"><span>🔗</span>Fosters collaboration, networking, and leadership development</li>
+                  <li className="flex items-center gap-2"><span>🌐</span>Organizes AutoCom, an international conference on automation and computation</li>
+                  <li className="flex items-center gap-2"><span>💡</span>Focus areas include AI, cybersecurity, and assistive technologies</li>
+                </ul>
+              </div>
+              <p className="text-base text-muted-foreground mt-2">
+                IEEE-SB GEHU is committed to nurturing future engineers and innovators by promoting cutting-edge research and meaningful collaborations.
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* ...rest of your about page (prizes, call to action, etc.)... */}
+      </section>
       <Footer />
     </div>
-
-
   );
 }

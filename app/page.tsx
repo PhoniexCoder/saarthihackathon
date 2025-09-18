@@ -54,7 +54,7 @@ const timeline = [
   { date: "5 Oct 2025", event: "PPT submission begins (Idea Proposal)" },
   { date: "20 Oct 2025", event: "PPT submission closes" },
   { date: "25 Oct 2025", event: "Results of PPT round announced" },
-  { date: "1 Nov 2025", event: "Final registration fee payment (₹600 per participant)" },
+  { date: "1 Nov 2025", event: "Final registration fee payment" },
   { date: "5 Nov 2025", event: "Submission of NOC and ID proof (soft copy)" },
   { date: "8-9 Nov 2025", event: "National-level Hackathon at GEHU, Dehradun" },
 ];
@@ -166,7 +166,13 @@ export default function HomePage() {
                 <span>Graphic Era Hill University, Dehradun</span>
               </div>
             </div>
-
+            {/* Add this below the date/location */}
+            <div className="mb-8">
+              <span className="block text-primary font-semibold text-base sm:text-lg">
+                Organised by Department of Computer Science and Engineering and School of Computing, GEHU
+              </span>
+            </div>
+            
             {/* Countdown Timer */}
             <div className="flex flex-row gap-4 max-w-2xl mx-auto mb-8 justify-center items-center flex-wrap sm:flex-nowrap">
               {Object.entries(timeLeft).map(([unit, value], idx) => {
@@ -402,8 +408,7 @@ export default function HomePage() {
               <AccordionItem value="item-3">
                 <AccordionTrigger>Are there any participation fees?</AccordionTrigger>
                 <AccordionContent>
-                  No, SAARTHI'25 is completely free to participate. This includes meals, accommodation (if needed), and
-                  all event materials. Our sponsors make this possible to ensure accessibility for all students.
+                  A nominal participation fee of ₹600 per participant is applicable for teams qualifying for the final round, to be paid online by 1st November 2025.
                 </AccordionContent>
               </AccordionItem>
 
