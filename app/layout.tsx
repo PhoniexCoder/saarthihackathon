@@ -1,8 +1,8 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
-import CustomCursor from "@/components/effects/custom-cursor"
 import BackgroundElements from "@/components/ui/background-elements";
+import CursorWrapper from "@/components/effects/cursor-wrapper";
 
 export const metadata: Metadata = {
   icons: {
@@ -23,8 +23,8 @@ export default function RootLayout({
     <html lang="en" className="antialiased">
       <body className="font-sans tech-particles">
         <BackgroundElements />
-        <CustomCursor />
-  {children}
+        <CursorWrapper />
+        {children}
       </body>
     </html>
   )
