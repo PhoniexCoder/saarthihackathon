@@ -1,6 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+// Keyframes for subtle shake and glow
+const shakeKeyframes = `
+@keyframes shake {
+  0% { transform: translateX(0); box-shadow: 0 0 0 0 #60a5fa; }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); box-shadow: 0 0 16px 4px #60a5fa55; }
+  20%, 40%, 60%, 80% { transform: translateX(4px); box-shadow: 0 0 24px 8px #60a5fa88; }
+  100% { transform: translateX(0); box-shadow: 0 0 0 0 #60a5fa; }
+}
+`;
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,9 +21,69 @@ import { Calendar, MapPin, Users, Trophy, Clock, Mail, Phone } from "lucide-reac
 import { GSAPTextHover } from "@/components/effects/gsap-text-hover"
 import { FlipCard } from "@/components/ui/flip-card"
 import Header from "@/components/ui/header"
+import Footer from "@/components/ui/footer"
 import BackgroundElements from "@/components/ui/background-elements"
+import ReactFullpage from "@fullpage/react-fullpage";
+
+// Judges data should be an array, not an object
+const judges = [
+  {
+    name: "Dr. Sarah Johnson",
+    role: "Accessibility Research Director",
+    company: "Tech for Good Foundation",
+    image: "/placeholder-user.jpg",
+  },
+  {
+    name: "Prof. Rajesh Kumar",
+    role: "Computer Science Department",
+    company: "IIT Delhi",
+    image: "/placeholder-user.jpg",
+  },
+  {
+    name: "Ms. Priya Sharma",
+    role: "Product Manager",
+    company: "Microsoft Accessibility",
+    image: "/placeholder-user.jpg",
+  },
+];
+
+// Timeline data should be an array, not an object
+const timeline = [
+  { date: "25 Sept 2025", event: "Hackathon goes live on Unstop platform" },
+  { date: "1 Oct 2025", event: "Participant registration opens" },
+  { date: "5 Oct 2025", event: "PPT submission begins (Idea Proposal)" },
+  { date: "20 Oct 2025", event: "PPT submission closes" },
+  { date: "25 Oct 2025", event: "Results of PPT round announced" },
+  { date: "1 Nov 2025", event: "Final registration fee payment (₹600 per participant)" },
+  { date: "5 Nov 2025", event: "Submission of NOC and ID proof (soft copy)" },
+  { date: "8-9 Nov 2025", event: "National-level Hackathon at GEHU, Dehradun" },
+];
 
 export default function HomePage() {
+  const [shake, setShake] = useState(false);
+  const shakeTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Inject shake keyframes and utility only once (client-side)
+    if (typeof window !== 'undefined') {
+      if (!document.getElementById('shake-keyframes')) {
+        const style = document.createElement('style');
+        style.id = 'shake-keyframes';
+        style.innerHTML = shakeKeyframes + `\n.animate-shake { animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both; }`;
+        document.head.appendChild(style);
+      }
+    }
+    // Trigger shake every 5 seconds
+    const interval = setInterval(() => {
+      setShake(true);
+      if (shakeTimeout.current) clearTimeout(shakeTimeout.current);
+      shakeTimeout.current = setTimeout(() => setShake(false), 600);
+    }, 5000);
+    return () => {
+      clearInterval(interval);
+      if (shakeTimeout.current) clearTimeout(shakeTimeout.current);
+    };
+  }, []);
   // Contact form state
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
@@ -138,76 +207,19 @@ export default function HomePage() {
             </div>
 
             <GSAPTextHover blendMode="multiply" scaleAmount={1.05}>
-              <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6" asChild>
+              <Button
+                size="lg"
+                className={`text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-transform ${shake ? 'animate-shake ring-4 ring-blue-400/40' : ''}`}
+                asChild
+              >
                 <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">Register Now</a>
               </Button>
             </GSAPTextHover>
+
           </motion.div>
         </div>
       </section>
 
-      {/* About Section */}
-  <section id="about" className="py-14 sm:py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-10 sm:mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About SAARTHI'25</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              SAARTHI'25 is an inter-university hackathon focused on developing innovative technological solutions that
-              enhance accessibility and inclusion for persons with disabilities. Join us in creating technology that
-              truly serves everyone.
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-          >
-            <motion.div variants={fadeInUp}>
-              <Card>
-                <CardHeader>
-                  <Users className="w-12 h-12 text-primary mb-4" />
-                  <CardTitle>Collaborative Innovation</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Work with diverse teams to create solutions that address real-world accessibility challenges.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <Card>
-                <CardHeader>
-                  <Trophy className="w-12 h-12 text-secondary mb-4" />
-                  <CardTitle>Impactful Solutions</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Develop technology that makes a meaningful difference in the lives of persons with disabilities.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <Card>
-                <CardHeader>
-                  <Clock className="w-12 h-12 text-accent mb-4" />
-                  <CardTitle>24-Hour Challenge</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Intensive 24-hour hackathon with mentorship, workshops, and networking opportunities.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Themes Section */}
       <section id="themes" className="py-20">
@@ -268,200 +280,98 @@ export default function HomePage() {
       </section>
 
       {/* Schedule Section */}
-      <section id="schedule" className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Event Schedule</h2>
-            <p className="text-lg text-muted-foreground">24 hours of innovation, collaboration, and impact</p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div {...fadeInUp}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5" />
-                    November 8th
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Registration & Check-in</span>
-                    <Badge variant="outline">10:00 AM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Opening Ceremony</span>
-                    <Badge variant="outline">11:00 AM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Hacking Begins</span>
-                    <Badge variant="outline">12:00 PM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Mentor Sessions</span>
-                    <Badge variant="outline">3:00 PM</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5" />
-                    November 9th
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Final Submissions</span>
-                    <Badge variant="outline">12:00 PM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Project Presentations</span>
-                    <Badge variant="outline">1:00 PM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Judging & Evaluation</span>
-                    <Badge variant="outline">2:30 PM</Badge>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-medium">Awards & Closing Ceremony</span>
-                    <Badge variant="outline">4:00 PM</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
+      <section id="schedule" className="py-20 bg-muted/30 min-h-screen">
+        <div className="max-w-3xl w-full mx-auto flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Event Schedule</h2>
+          <p className="text-lg text-muted-foreground mb-8 text-center">
+            24 hours of innovation, collaboration, and impact
+          </p>
         </div>
-      </section>
-
-      {/* Rules Section */}
-      <section id="rules" className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Rules & Guidelines</h2>
-            <p className="text-lg text-muted-foreground">Important guidelines for all participants</p>
-          </motion.div>
-
-          <motion.div {...fadeInUp}>
-            <Card>
-              <CardContent className="p-8">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3">Team Formation</h3>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li>Teams must consist of 2-4 members</li>
-                      <li>Cross-university collaboration is encouraged</li>
-                      <li>Team formation will be facilitated during the event</li>
-                    </ul>
+        <div className="relative w-full max-w-3xl mx-auto">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 h-full w-2 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-80 rounded-full z-0" />
+          <ul className="relative z-10">
+            {timeline.map((item, idx) => (
+              <motion.li
+                key={idx}
+                className={`
+                  flex items-center w-full mb-16 last:mb-0
+                  ${idx % 2 === 0 ? "justify-start" : "justify-end"}
+                  group
+                `}
+                initial={{ opacity: 0, x: idx % 2 === 0 ? -80 : 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.7, delay: idx * 0.1 }}
+              >
+                {/* Timeline content card */}
+                <div className={`
+                  w-full sm:w-[48%] bg-white/90 backdrop-blur-lg rounded-xl shadow-xl px-6 py-4
+                  flex flex-col gap-2
+                  ${idx % 2 === 0 ? "ml-0 sm:ml-8 text-left" : "mr-0 sm:mr-8 text-right"}
+                  border border-blue-100
+                  transition-transform duration-300 group-hover:scale-[1.03]
+                `}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Calendar className="w-5 h-5 text-primary" />
+                    <span className="font-semibold text-primary text-base">{item.date}</span>
                   </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3">Project Requirements</h3>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li>Solutions must address accessibility challenges</li>
-                      <li>All code must be original and developed during the hackathon</li>
-                      <li>Open source libraries and APIs are permitted</li>
-                      <li>Final submission must include working prototype and presentation</li>
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-semibold mb-3">Code of Conduct</h3>
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                      <li>Respectful and inclusive behavior is mandatory</li>
-                      <li>No harassment or discrimination will be tolerated</li>
-                      <li>Collaboration and knowledge sharing are encouraged</li>
-                    </ul>
-                  </div>
+                  <div className="text-lg font-semibold text-gray-900">{item.event}</div>
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Prizes Section */}
-      <section id="prizes" className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Prizes & Recognition</h2>
-            <p className="text-lg text-muted-foreground">Celebrating innovation and impact</p>
-          </motion.div>
-
-          <motion.div className="flex justify-center" {...fadeInUp}>
-            <Card className="text-center relative overflow-hidden max-w-xl w-full">
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 to-yellow-600"></div>
-              <CardHeader className="pt-12 pb-8">
-                <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-6" />
-                <CardTitle className="text-4xl font-extrabold text-primary">₹1,00,000+</CardTitle>
-                <CardDescription className="text-2xl font-semibold text-muted-foreground mt-2">Prize Pool</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-lg text-muted-foreground">Exciting cash prizes, trophies, certificates, and special awards for top teams!</p>
-              </CardContent>
-            </Card>
-          </motion.div>
+                {/* Timeline dot */}
+                <div className="relative z-10 flex flex-col items-center">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 border-4 border-white shadow-lg flex items-center justify-center text-white text-base font-bold absolute left-1/2 -translate-x-1/2 -top-3">
+                    {idx + 1}
+                  </span>
+                  {/* Connecting line (only if not last) */}
+                  {idx !== timeline.length - 1 && (
+                    <span className="w-1 h-12 bg-gradient-to-b from-blue-400 via-purple-400 to-pink-400 opacity-60 rounded-full mt-6"></span>
+                  )}
+                </div>
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* Judges Section */}
       <section id="judges" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
+          <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Esteemed Judges</h2>
             <p className="text-lg text-muted-foreground">Industry experts and accessibility advocates</p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-          >
-            {[
-              {
-                name: "Dr. Sarah Johnson",
-                role: "Accessibility Research Director",
-                company: "Tech for Good Foundation",
-              },
-              { name: "Prof. Rajesh Kumar", role: "Computer Science Department", company: "IIT Delhi" },
-              { name: "Ms. Priya Sharma", role: "Product Manager", company: "Microsoft Accessibility" },
-            ].map((judge, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="text-center">
-                  <CardHeader>
-                    <div className="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto mb-4"></div>
-                    <CardTitle>{judge.name}</CardTitle>
-                    <CardDescription>{judge.role}</CardDescription>
-                    <p className="text-sm text-muted-foreground">{judge.company}</p>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Sponsors Section */}
-      <section id="sponsors" className="py-20 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Sponsors & Partners</h2>
-            <p className="text-lg text-muted-foreground">Supporting accessibility innovation</p>
-          </motion.div>
-
-          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center" {...fadeInUp}>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((sponsor) => (
-              <div key={sponsor} className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
-                <div className="w-full h-12 bg-gradient-to-r from-gray-200 to-gray-300 rounded"></div>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {judges.map((judge, idx) => (
+              <div
+                key={idx}
+                className="relative bg-gradient-to-br from-blue-50 via-white to-purple-100 rounded-3xl shadow-2xl flex flex-col items-center p-8 transition-transform hover:-translate-y-3 hover:shadow-blue-300/40 hover:shadow-2xl duration-300 group overflow-hidden"
+              >
+                {/* Glow ring */}
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-40 h-40 bg-gradient-to-tr from-blue-400 via-purple-400 to-pink-400 opacity-30 blur-2xl rounded-full z-0"></div>
+                {/* Avatar with border and floating effect */}
+                <div className="relative z-10 mb-4">
+                  <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-primary shadow-lg ring-4 ring-blue-200 group-hover:ring-pink-200 transition-all duration-300 bg-white">
+                    <img
+                      src={judge.image}
+                      alt={judge.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                {/* Card content */}
+                <div className="text-center z-10">
+                  <div className="font-extrabold text-xl text-gray-900 mb-1 group-hover:text-primary transition-colors duration-300">{judge.name}</div>
+                  <div className="text-primary font-medium mb-1">{judge.role}</div>
+                  <div className="text-muted-foreground text-sm">{judge.company}</div>
+                </div>
+                {/* Decorative bottom bar */}
+                <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-b-3xl opacity-80"></div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
+
 
       {/* FAQ Section */}
       <section id="faq" className="py-20">
@@ -669,114 +579,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-  <footer className="bg-black text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-10 md:gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-8 w-8" />
-                <GSAPTextHover blendMode="difference" scaleAmount={1.05}>
-                  <span className="text-xl font-bold">SAARTHI'25</span>
-                </GSAPTextHover>
-              </div>
-              <p className="text-muted text-sm">
-                Innovating inclusive solutions for persons with disabilities through technology.
-              </p>
-            </div>
 
-            <div>
-              <h3 className="font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-sm">
-                {[
-                  { href: '#about', label: 'About' },
-                  { href: '#themes', label: 'Themes' },
-                  { href: '#schedule', label: 'Schedule' },
-                  { href: '#prizes', label: 'Prizes' },
-                  { href: '/results', label: 'Results' },
-                  { href: '#contact', label: 'Contact' },
-                ].map(link => (
-                  <li key={link.href}>
-                    <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                      <a
-                        href={link.href}
-                        className="text-muted hover:text-primary focus:text-primary transition-colors outline-none focus:underline"
-                        tabIndex={0}
-                      >
-                        {link.label}
-                      </a>
-                    </GSAPTextHover>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-sm">
-                {[
-                  { href: '#rules', label: 'Rules' },
-                  { href: '#faq', label: 'FAQ' },
-                  { href: '#contact', label: 'Contact' },
-                  { href: '#sponsors', label: 'Sponsors' },
-                ].map(link => (
-                  <li key={link.href}>
-                    <GSAPTextHover blendMode="overlay" scaleAmount={1.1}>
-                      <a
-                        href={link.href}
-                        className="text-muted hover:text-primary focus:text-primary transition-colors outline-none focus:underline"
-                        tabIndex={0}
-                      >
-                        {link.label}
-                      </a>
-                    </GSAPTextHover>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Connect</h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://www.linkedin.com/school/graphic-era-hill-university/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="rounded-full p-2 bg-background/10 hover:bg-primary/80 focus:bg-primary/80 transition-colors text-muted hover:text-background focus:text-background outline-none"
-                >
-                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm15.5 11.268h-3v-5.604c0-1.337-.025-3.063-1.868-3.063-1.868 0-2.154 1.459-2.154 2.967v5.7h-3v-10h2.881v1.367h.041c.401-.761 1.381-1.563 2.844-1.563 3.042 0 3.604 2.003 3.604 4.605v5.591z"/></svg>
-                </a>
-                <a
-                  href="https://www.instagram.com/gehuofficial/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="rounded-full p-2 bg-background/10 hover:bg-primary/80 focus:bg-primary/80 transition-colors text-muted hover:text-background focus:text-background outline-none"
-                >
-                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.011 3.584-.069 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.011-4.85-.069c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608-.058-1.266-.069-1.646-.069-4.85s.011-3.584.069-4.85c.062-1.366.334-2.633 1.308-3.608.974-.974 2.241-1.246 3.608-1.308 1.266-.058 1.646-.069 4.85-.069zm0-2.163c-3.259 0-3.667.012-4.947.07-1.276.058-2.687.334-3.678 1.325-.991.991-1.267 2.402-1.325 3.678-.058 1.28-.07 1.688-.07 4.947s.012 3.667.07 4.947c.058 1.276.334 2.687 1.325 3.678.991.991 2.402 1.267 3.678 1.325 1.28.058 1.688.07 4.947.07s3.667-.012 4.947-.07c1.276-.058 2.687-.334 3.678-1.325.991-.991 1.267-2.402 1.325-3.678.058-1.28.07-1.688.07-4.947s-.012-3.667-.07-4.947c-.058-1.276-.334-2.687-1.325-3.678-.991-.991-2.402-1.267-3.678-1.325-1.28-.058-1.688-.07-4.947-.07zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-                </a>
-                <a
-                  href="https://twitter.com/gehuofficial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                  className="rounded-full p-2 bg-background/10 hover:bg-primary/80 focus:bg-primary/80 transition-colors text-muted hover:text-background focus:text-background outline-none"
-                >
-                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.93 9.93 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.916 4.916 0 0 0-8.38 4.482c-4.083-.205-7.697-2.162-10.125-5.144a4.822 4.822 0 0 0-.664 2.475c0 1.708.87 3.216 2.188 4.099a4.904 4.904 0 0 1-2.229-.616c-.054 2.281 1.581 4.415 3.949 4.89a4.936 4.936 0 0 1-2.224.084c.627 1.956 2.444 3.377 4.6 3.417a9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.069a13.945 13.945 0 0 0 7.548 2.212c9.057 0 14.009-7.513 14.009-14.009 0-.213-.005-.425-.014-.636A10.012 10.012 0 0 0 24 4.557z"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-muted/20 mt-8 pt-8 text-center">
-            <p className="text-muted text-sm">
-              © 2025 SAARTHI Hackathon. All rights reserved. Organized by Graphic Era Hill University.
-            </p>
-          </div>
-        </div>
-      </footer>
-
+      <Footer />
     </div>
   )
 }

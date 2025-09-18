@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navLinks = [
-    { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/team", label: "Team" },
     { href: "/sponsors", label: "Sponsors" },
@@ -20,12 +19,12 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
-          <div className="flex items-center space-x-3">
+          <a href="/" className="flex items-center space-x-3 group">
             <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-10 w-10 neon-glow" />
             <GSAPTextHover blendMode="difference" scaleAmount={1.05}>
               <span className="text-xl font-bold neon-glow text-gray-900">SAARTHI'25</span>
             </GSAPTextHover>
-          </div>
+          </a>
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map(link => (
