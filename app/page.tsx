@@ -54,7 +54,7 @@ const timeline = [
   { date: "10 Oct 2025", event: "PPT submission closes" },
   { date: "15 Oct 2025", event: "Results of PPT round announced" },
   { date: "20 Oct 2025", event: "Final registration fee payment" },
-  { date: "5 Nov 2025", event: "Submission of NOC and ID proof (soft copy)" },
+  { date: "1 Nov 2025", event: "Submission of NOC and ID proof (soft copy)" },
   { date: "8-9 Nov 2025", event: "National-level Hackathon at GEHU, Dehradun" },
 ];
 
@@ -500,6 +500,38 @@ export default function HomePage() {
         </div>
       </section>*/}
 
+      {/* Collaborate With Us Section */}
+      <section id="collaborate" className="py-16">
+        <div className="max-w-xl mx-auto px-4">
+          <motion.div
+            {...fadeInUp}
+            className="rounded-2xl shadow-xl border-2 border-primary bg-white/95 flex flex-col items-center p-8"
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 text-center">
+              Collaborate With Us
+            </h2>
+            <p className="text-base md:text-lg text-gray-700 mb-7 text-center">
+              We're looking for <span className="text-primary font-semibold">sponsors, judges, mentors, and community partners</span> to help make <span className="text-pink-600 font-semibold">SAARTHI'25</span> a massive success.<br />
+              <span className="font-semibold text-primary">Interested?</span> Let's collaborate!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+              <a
+                href="/sponsors"
+                className="flex-1 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-pink-500 text-white font-bold text-base shadow hover:scale-105 transition-transform text-center"
+              >
+                Become a Sponsor
+              </a>
+              <a
+                href="mailto:saarthi@gehu.ac.in?subject=Mentor/Judge%20Enquiry%20for%20SAARTHI'25"
+                className="flex-1 inline-block px-6 py-3 rounded-lg border-2 border-primary text-primary font-bold text-base bg-white hover:bg-primary hover:text-white transition-colors shadow text-center"
+              >
+                Join as Mentor/Judge
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
 
       {/* FAQ Section */}
       <section id="faq" className="py-20">
@@ -705,7 +737,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
 
       <Footer />
     </div>

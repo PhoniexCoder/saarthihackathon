@@ -113,25 +113,25 @@ export default function AboutPage() {
 
         {/* About Graphic Era Hill University */}
         <div className="w-full flex flex-col items-center">
-          <div className="w-full flex flex-col md:flex-row items-center gap-10 bg-white/90 dark:bg-white/10 rounded-3xl shadow-2xl border border-white/30 p-0 md:p-0 overflow-hidden">
-            {/* Image Section */}
-            <div className="flex-1 flex justify-center items-stretch min-h-[320px] bg-gradient-to-br from-blue-100 via-white to-pink-100">
+          <div className="w-full max-w-5xl bg-white/90 dark:bg-white/10 rounded-3xl shadow-2xl border border-white/30 overflow-hidden flex flex-col items-center">
+            {/* Larger Image at the top */}
+            <div className="w-full flex justify-center items-center min-h-[300px] bg-gradient-to-br from-blue-100 via-white to-pink-100">
               <img
                 src="/gehu_campus.png"
                 alt="Graphic Era Hill University Campus"
-                className="object-contain w-full h-full max-h-[340px] p-6"
+                className="object-contain w-full max-h-[480px] p-4 md:p-8"
                 style={{ background: "white" }}
               />
             </div>
-            {/* Content Section */}
-            <div className="flex-1 flex flex-col justify-center gap-4 p-8 md:p-12">
+            {/* Content below image */}
+            <div className="w-full flex flex-col justify-center gap-4 p-8 md:p-12 items-center text-center">
               <h2 className="text-3xl font-extrabold text-primary mb-2">About Graphic Era Hill University</h2>
               <p className="text-lg text-muted-foreground">
-                <span className="font-semibold text-primary">Graphic Era Hill University (GEHU)</span> is a premier institution nestled in the Himalayan region, founded by Prof. (Dr.) Kamal Ghanshala with a vision to redefine higher education through innovation and determination. Recognized by the University Grants Commission (UGC), GEHU offers multidisciplinary programs that emphasize research, entrepreneurship, and holistic development.
+                <span className="font-semibold text-primary">Graphic Era Hill University (GEHU)</span> is the culmination of the hard work of its visionary founder, Prof. (Dr.) Kamal Ghanshala, who had the dream to change the destiny of thousands of youths through quality and holistic education. Founded in 2011, GEHU (Graphic Era Hill University) is a private university located in Dehradun, Uttarakhand, India. The university is set up under Section 2(f) of the UGC Act, 1956 as the extension of the Graphic Era Educational Society, Dehradun. Graphic Era Hill University is widely known for its innovative and diligent education system which has nurtured professionals across industries and sectors in India and beyond.  The university is known for its high-quality education and state-of-the-art facilities.
               </p>
-              <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2">
+              <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
                 <h3 className="text-xl font-semibold text-primary mb-2">Why GEHU?</h3>
-                <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200">
+                <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
                   <li className="flex items-center gap-2"><span>🌐</span>10,000+ students enrolled across diverse disciplines</li>
                   <li className="flex items-center gap-2"><span>🤖</span>Focus on AI, Blockchain, Renewable Energy, and Med-Tech</li>
                   <li className="flex items-center gap-2"><span>🚀</span>Active startup incubation and mentorship programs</li>

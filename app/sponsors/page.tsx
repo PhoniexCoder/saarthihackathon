@@ -129,7 +129,7 @@ export default function SponsorsPage() {
                             Download Brochure
                         </a>
                         <a
-                            href="mailto:saarthi@gehu.ac.in"
+                            href="mailto:saarthi@gehu.ac.in?subject=Sponsor%20Enquiry%20for%20SAARTHI'25"
                             className="inline-block px-8 py-3 rounded-lg border-2 border-primary text-primary font-bold text-lg bg-white hover:bg-primary hover:text-white transition-colors shadow-lg tracking-wide"
                         >
                             Contact Us

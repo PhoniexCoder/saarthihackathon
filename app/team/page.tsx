@@ -27,25 +27,25 @@ const committees: Committee[] = [
         role: "Head of Department",
         image: "./as.jpg",
         linkedin: "https://www.linkedin.com/in/prof-dr-anupam-singh-1a26021a/",
-        about: "Convener and Head of Department of CSE and SOC for Saarthi Hackathon. Passionate about technology and innovation in education."
+        about: "Convener and Head of Department of CSE and SOC, Graphic Era Hill University, Dehradun."
       }
     ]
   },
   {
     name: "Organizing Committee",
     members: [
-      { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/CD_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/", about: "Organizing committee member with expertise in event management." },
-      { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/LS.jpg",linkedin:"https://www.linkedin.com/in/dr-luxmi-sapra-b36399168/", about: "Organizing committee member and academic leader." },
-      { name: "Dr. Himani Maheshwari", role: "Faculty Coordinator", image: "/HM.jpg",linkedin:"https://www.linkedin.com/in/himani-maheshwari-aa64281a", about: "Organizing committee member and mentor." },
-      { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg",linkedin:"https://www.linkedin.com/in/sushant-chamoli-33a57550/", about: "Organizing committee member and operations specialist." }
+      { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/CD_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/", about: "Organizing committee member" },
+      { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/LS.jpg",linkedin:"https://www.linkedin.com/in/dr-luxmi-sapra-b36399168/", about: "Organizing committee member." },
+      { name: "Dr. Himani Maheshwari", role: "Faculty Coordinator", image: "/HM.jpg",linkedin:"https://www.linkedin.com/in/himani-maheshwari-aa64281a", about: "Organizing committee member." },
+      { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg",linkedin:"https://www.linkedin.com/in/sushant-chamoli-33a57550/", about: "Organizing committee member." }
     ]
   },
   {
     name: "Student Committee",
     members: [
-      { name: "Anshul Panwar", role: "Student Member", image: "/AP.jpg", linkedin: "https://www.linkedin.com/in/anshul-panwar-21aa3233b/", about: "Lead organizer coordinating all student activities." },
+      { name: "Anshul Panwar", role: "Student Member", image: "/AP.jpg", linkedin: "https://www.linkedin.com/in/anshul-panwar-21aa3233b/", about: "Attended Graphic Era Hill University." },
       { name: "Srishti Rana", role: "Student Member", image: "/SR.jpg", linkedin: "https://www.linkedin.com/in/srishti-rana-ab4641305/", about: "B.Tech CSE (AI-DS) | AI and Data Science Practitioner" },
-      { name: "Prins Kanyal", role: "Student Member", image: "/placeholder-user.jpg", linkedin: "https://www.linkedin.com/in/prins-kanyal", about: "Handling sponsorships and partnerships." },
+      { name: "Prins Kanyal", role: "Student Member", image: "/pk.jpg", linkedin: "https://www.linkedin.com/in/prins-kanyal", about: "Handling sponsorships and partnerships." },
       { name: "Priyanshu Solanki", role: "Student Member", image: "/PS.jpg", linkedin: "https://www.linkedin.com/in/priyanshu-solanki-625b81301", about: "Overseeing marketing and promotions." }
     ]
   }
