@@ -356,16 +356,8 @@ export default function HomePage() {
                 border: "border-teal-400",
               },
               {
-                icon: "🏠",
-                title: "Track 9: Daily Living Assistance & Smart Homes",
-                desc: "IoT-enabled home automation for independent living.",
-                features:
-                  "Examples: voice/haptic controlled appliances, remote caregiver monitoring systems.",
-                border: "border-rose-400",
-              },
-              {
                 icon: "📢",
-                title: "Track 10: Policy, Awareness & Community Solutions",
+                title: "Track 9: Policy, Awareness & Community Solutions",
                 desc: "Platforms and tools to promote accessibility awareness and rights.",
                 features:
                   "Examples: accessibility auditing tools, advocacy platforms, volunteer networks.",
@@ -373,7 +365,7 @@ export default function HomePage() {
               },
               {
                 icon: "💡",
-                title: "Track 11: Open Innovation for Disabilities & Accessibility",
+                title: "Track 10: Open Innovation for Disabilities & Accessibility",
                 desc: "Any creative solution that addresses challenges faced by persons with disabilities and promotes accessibility.",
                 features:
                   "Examples: novel assistive devices, inclusive apps, awareness platforms, or any impactful idea that doesn't fit other tracks.",
