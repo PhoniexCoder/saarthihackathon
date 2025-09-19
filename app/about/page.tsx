@@ -132,7 +132,7 @@ export default function AboutPage() {
               <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
                 <h3 className="text-xl font-semibold text-primary mb-2">Why GEHU?</h3>
                 <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
-                  <li className="flex items-center gap-2"><span>🌐</span>10,000+ students enrolled across diverse disciplines</li>
+                  <li className="flex items-center gap-2"><span>🌐</span>17,000+ students enrolled across diverse disciplines</li>
                   <li className="flex items-center gap-2"><span>🤖</span>Focus on AI, Blockchain, Renewable Energy, and Med-Tech</li>
                   <li className="flex items-center gap-2"><span>🚀</span>Active startup incubation and mentorship programs</li>
                   <li className="flex items-center gap-2"><span>🌍</span>Participation in national and international collaborations</li>
