@@ -615,7 +615,7 @@ export default function HomePage() {
                     <Phone className="w-5 h-5 text-primary" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <p className="text-muted-foreground">+91 135 2643000</p>
+                      <p className="text-muted-foreground">+91 9622285500</p>
                     </div>
                   </div>
 
