@@ -34,10 +34,10 @@ const committees: Committee[] = [
   {
     name: "Organizing Committee",
     members: [
-      { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/CD_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/", about: "Organizing committee member" },
-      { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/LS.jpg",linkedin:"https://www.linkedin.com/in/dr-luxmi-sapra-b36399168/", about: "Organizing committee member." },
-      { name: "Dr. Himani Maheshwari", role: "Faculty Coordinator", image: "/HM.jpg",linkedin:"https://www.linkedin.com/in/himani-maheshwari-aa64281a", about: "Organizing committee member." },
-      { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg",linkedin:"https://www.linkedin.com/in/sushant-chamoli-33a57550/", about: "Organizing committee member." }
+      { name: "Dr. Chandradeep Bhatt", role: "Faculty Coordinator", image: "/CD_sir.jpg",linkedin:"https://www.linkedin.com/in/dr-chandradeep-bhatt-8b64a2b0/"},
+      { name: "Dr. Luxmi Sapra", role: "Faculty Coordinator", image: "/LS.jpg",linkedin:"https://www.linkedin.com/in/dr-luxmi-sapra-b36399168/"},
+      { name: "Dr. Himani Maheshwari", role: "Faculty Coordinator", image: "/HM.jpg",linkedin:"https://www.linkedin.com/in/himani-maheshwari-aa64281a"},
+      { name: "Mr. Sushant Chamoli", role: "Faculty Coordinator", image: "/SC.jpg",linkedin:"https://www.linkedin.com/in/sushant-chamoli-33a57550/"}
     ]
   },
   {
@@ -76,11 +76,18 @@ export default function TeamPage() {
               >
                 {committee.members.length > 0 ? (
                   committee.members.map((member, i) => {
+                    const showAbout =
+                      committee.name === "Convener" && member.about;
+                    // Set card height based on committee type
+                    const cardMinHeight =
+                      ["Organizing Committee", "Student Committee"].includes(committee.name)
+                        ? "16rem"
+                        : "20rem";
                     return (
                       <div
                         key={i}
                         className="group w-80 mx-auto relative card-glass transition-all duration-300 overflow-hidden"
-                        style={{ zIndex: 10, minHeight: '20rem' }}
+                        style={{ zIndex: 10, minHeight: cardMinHeight }}
                       >
                         <div className="flex flex-col items-center w-full">
                           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-28 h-28 bg-gradient-to-br from-primary/80 to-secondary/80 rounded-full blur-2xl opacity-40 z-0" />
@@ -113,11 +120,13 @@ export default function TeamPage() {
                             <span className="text-base font-medium text-primary/80 text-center mt-1 mb-2 w-full break-words" title={member.role}>{member.role}</span>
                           </div>
                         </div>
-                        {/* About Section: Expand inside card on hover only */}
-                        <div className="about-expand max-h-0 opacity-0 group-hover:max-h-60 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto overflow-hidden transition-all duration-500 bg-white/95 rounded-b-2xl shadow-2xl backdrop-blur-lg px-6 py-4 flex flex-col items-center mt-0">
-                          <span className="font-semibold text-primary mb-2 text-lg">About</span>
-                          <span className="text-gray-700 text-base leading-relaxed text-center">{member.about || "No additional information provided."}</span>
-                        </div>
+                        {/* About Section: Only for Convener */}
+                        {showAbout && (
+                          <div className="about-expand max-h-0 opacity-0 group-hover:max-h-60 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto overflow-hidden transition-all duration-500 bg-white/95 rounded-b-2xl shadow-2xl backdrop-blur-lg px-6 py-4 flex flex-col items-center mt-0">
+                            <span className="font-semibold text-primary mb-2 text-lg">About</span>
+                            <span className="text-gray-700 text-base leading-relaxed text-center">{member.about}</span>
+                          </div>
+                        )}
                       </div>
                     );
                   })
