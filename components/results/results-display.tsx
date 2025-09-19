@@ -101,7 +101,7 @@ export function ResultsDisplay() {
 			<Header />
 			<BackgroundElements />
 			<div className="min-h-screen">
-				<div className="container mx-auto px-4 py-16 bg-white/40 backdrop-blur-md rounded-3xl shadow-xl">
+				<div className="container mx-auto px-4 py-24 bg-white/40 backdrop-blur-md rounded-3xl shadow-xl">
 					{/* Header */}
 					<motion.div
 						className="text-center mb-16"
@@ -121,9 +121,15 @@ export function ResultsDisplay() {
 						<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
 							Celebrating innovation in accessibility technology and inclusive design
 						</p>
-						<div className="flex items-center justify-center space-x-2 mt-4 text-muted-foreground">
-							<Calendar className="h-5 w-5" />
-							<span>Results declared on 9 Nov 2025</span>
+						<div className="flex flex-col items-center justify-center gap-2 mt-4 text-muted-foreground">
+							<div className="flex items-center space-x-2">
+								<Calendar className="h-5 w-5" />
+								<span>Round 1 Results announced on <span className="font-semibold text-primary">15 Oct 2025</span></span>
+							</div>
+							<div className="flex items-center space-x-2">
+								<Calendar className="h-5 w-5" />
+								<span>Final Results declared on <span className="font-semibold text-pink-600">9 Nov 2025</span></span>
+							</div>
 						</div>
 					</motion.div>
 

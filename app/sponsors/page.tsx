@@ -5,46 +5,46 @@ import Header from "@/components/ui/header"
 import Footer from "@/components/ui/footer"
 
 const sponsors = [
-	{
-		name: "TechCorp",
-		about: "Leading technology solutions provider.",
-		logo: "/sponsors/techcorp.png",
-	},
-	{
-		name: "InnoSoft",
-		about: "Innovating accessibility for all.",
-		logo: "/sponsors/innosoft.png",
-	},
-	{
-		name: "EduNext",
-		about: "Empowering education through technology.",
-		logo: "/sponsors/edunext.png",
-	},
-	{
-		name: "HealthPlus",
-		about: "Healthcare innovation partner.",
-		logo: "/sponsors/healthplus.png",
-	},
-	{
-		name: "CodeBase",
-		about: "Supporting open-source communities.",
-		logo: "/sponsors/codebase.png",
-	},
-	{
-		name: "Visionary",
-		about: "Driving inclusive design.",
-		logo: "/sponsors/visionary.png",
-	},
-	{
-		name: "DataBridge",
-		about: "Connecting data for good.",
-		logo: "/sponsors/databridge.png",
-	},
-	{
-		name: "NextGen",
-		about: "Future-ready tech for everyone.",
-		logo: "/sponsors/nextgen.png",
-	},
+	// {
+	// 	name: "TechCorp",
+	// 	about: "Leading technology solutions provider.",
+	// 	logo: "/sponsors/techcorp.png",
+	// },
+	// {
+	// 	name: "InnoSoft",
+	// 	about: "Innovating accessibility for all.",
+	// 	logo: "/sponsors/innosoft.png",
+	// },
+	// {
+	// 	name: "EduNext",
+	// 	about: "Empowering education through technology.",
+	// 	logo: "/sponsors/edunext.png",
+	// },
+	// {
+	// 	name: "HealthPlus",
+	// 	about: "Healthcare innovation partner.",
+	// 	logo: "/sponsors/healthplus.png",
+	// },
+	// {
+	// 	name: "CodeBase",
+	// 	about: "Supporting open-source communities.",
+	// 	logo: "/sponsors/codebase.png",
+	// },
+	// {
+	// 	name: "Visionary",
+	// 	about: "Driving inclusive design.",
+	// 	logo: "/sponsors/visionary.png",
+	// },
+	// {
+	// 	name: "DataBridge",
+	// 	about: "Connecting data for good.",
+	// 	logo: "/sponsors/databridge.png",
+	// },
+	// {
+	// 	name: "NextGen",
+	// 	about: "Future-ready tech for everyone.",
+	// 	logo: "/sponsors/nextgen.png",
+	// },
 ]
 
 
