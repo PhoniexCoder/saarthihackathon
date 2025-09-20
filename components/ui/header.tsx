@@ -20,6 +20,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           <a href="/" className="flex items-center space-x-3 group">
+            <img src="/GEHU.png" alt="GEHU Logo" className="h-10 w-full neon-glow" />
             <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-10 w-full neon-glow" />
           </a>
           {/* Desktop nav */}

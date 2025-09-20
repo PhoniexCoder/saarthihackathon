@@ -143,18 +143,6 @@ export default function HomePage() {
       <section className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>
-            <div className="flex flex-row items-center justify-between gap-4 mb-6 w-full px-4">
-              <img
-                src="GEHU.png"
-                alt="GEHU"
-                className="h-14 w-auto sm:h-20 object-contain"
-              />
-              <img
-                src="ieeeb.png"
-                alt="IEEE"
-                className="h-14 w-auto sm:h-20 object-contain"
-              />
-            </div>
             <img
               src="/saarthi_log.png"
               alt="SAARTHI Logo"

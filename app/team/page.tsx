@@ -29,7 +29,7 @@ const committees: Committee[] = [
         linkedin: "https://www.linkedin.com/in/kamal-ghanshala"
       },
       {
-        name: "Dr. Amit Bhatt",
+        name: "Prof. (Dr.) Amit R. Bhatt",
         role: "Vice Chancellor at the Graphic Era Hill University, Dehradun",
         image: "./ab.jpg",
         linkedin: "https://www.linkedin.com/in/dr-amit-bhatt-03019216/"
