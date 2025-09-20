@@ -6,9 +6,9 @@ import CursorWrapper from "@/components/effects/cursor-wrapper";
 
 export const metadata: Metadata = {
   icons: {
-    icon: "/saarthi_log.png",
-    shortcut: "/saarthi_log.png",
-    apple: "/saarthi_log.png",
+    icon: "/saarthi_logo.png",
+    shortcut: "/saarthi_logo.png",
+    apple: "/saarthi_logo.png",
   },
   title: "SAARTHI'25 - National Level Hackathon",
   description: "Technology as an Enabler: Innovating Inclusive Solutions for Persons with Disabilities",
