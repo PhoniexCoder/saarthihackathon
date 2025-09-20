@@ -5,12 +5,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Trophy } from "lucide-react"
 import Header from "@/components/ui/header"
 import Footer from "@/components/ui/footer"
+import { useState } from "react";
+
 export default function AboutPage() {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 },
   };
+
+  // Section state: "gehu", "cse", "ieee"
+  const [aboutSection, setAboutSection] = useState<"gehu" | "cse" | "ieee">("gehu");
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -111,38 +116,134 @@ export default function AboutPage() {
           <a href="/register" className="inline-block px-8 py-3 rounded-full bg-primary text-white font-semibold shadow-lg hover:bg-primary/90 transition">Register for SAARTHI'25</a>
         </div>
 
-        {/* About Graphic Era Hill University */}
+        {/* About Section with Tabs */}
         <div className="w-full flex flex-col items-center">
           <div className="w-full max-w-5xl bg-white/90 dark:bg-white/10 rounded-3xl shadow-2xl border border-white/30 overflow-hidden flex flex-col items-center">
-            {/* Larger Image at the top */}
+            {/* Tabs */}
+            <div className="w-full flex justify-center gap-2 md:gap-6 bg-gradient-to-r from-blue-50 via-white to-pink-50 py-4">
+              <button
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  aboutSection === "gehu"
+                    ? "bg-primary text-white shadow"
+                    : "bg-white/80 text-primary hover:bg-primary/10"
+                }`}
+                onClick={() => setAboutSection("gehu")}
+              >
+                About Graphic Era Hill University
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  aboutSection === "cse"
+                    ? "bg-primary text-white shadow"
+                    : "bg-white/80 text-primary hover:bg-primary/10"
+                }`}
+                onClick={() => setAboutSection("cse")}
+              >
+                About CSE & SOC Department
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  aboutSection === "ieee"
+                    ? "bg-primary text-white shadow"
+                    : "bg-white/80 text-primary hover:bg-primary/10"
+                }`}
+                onClick={() => setAboutSection("ieee")}
+              >
+                About IEEE SB, GEHU
+              </button>
+            </div>
+            {/* Image at the top */}
             <div className="w-full flex justify-center items-center min-h-[300px] bg-gradient-to-br from-blue-100 via-white to-pink-100">
-              <img
-                src="/gehu_campus.png"
-                alt="Graphic Era Hill University Campus"
-                className="object-contain w-full max-h-[480px] p-4 md:p-8"
-                style={{ background: "white" }}
-              />
+              {aboutSection === "gehu" && (
+                <img
+                  src="/gehu_campus.png"
+                  alt="Graphic Era Hill University Campus"
+                  className="object-contain w-full max-h-[480px] p-4 md:p-8"
+                  style={{ background: "white" }}
+                />
+              )}
+              {aboutSection === "cse" && (
+                <img
+                  src="/cse_soc.png"
+                  alt="CSE & SOC Department"
+                  className="object-contain w-full max-h-[480px] p-4 md:p-8"
+                  style={{ background: "white" }}
+                />
+              )}
+              {aboutSection === "ieee" && (
+                <img
+                  src="/ieee_logo.png"
+                  alt="IEEE Student Branch GEHU"
+                  className="object-contain w-full max-h-[320px] p-4 md:p-8"
+                  style={{ background: "white" }}
+                />
+              )}
             </div>
             {/* Content below image */}
             <div className="w-full flex flex-col justify-center gap-4 p-8 md:p-12 items-center text-center">
-              <h2 className="text-3xl font-extrabold text-primary mb-2">About Graphic Era Hill University</h2>
-              <p className="text-lg text-muted-foreground">
-                <span className="font-semibold text-primary">Graphic Era Hill University (GEHU)</span> is the culmination of the hard work of its visionary founder, Prof. (Dr.) Kamal Ghanshala, who had the dream to change the destiny of thousands of youths through quality and holistic education. Founded in 2011, GEHU (Graphic Era Hill University) is a private university located in Dehradun, Uttarakhand, India. The university is set up under Section 2(f) of the UGC Act, 1956 as the extension of the Graphic Era Educational Society, Dehradun. Graphic Era Hill University is widely known for its innovative and diligent education system which has nurtured professionals across industries and sectors in India and beyond.  The university is known for its high-quality education and state-of-the-art facilities.
-              </p>
-              <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
-                <h3 className="text-xl font-semibold text-primary mb-2">Why GEHU?</h3>
-                <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
-                  <li className="flex items-center gap-2"><span>🌐</span>17,000+ students enrolled across diverse disciplines</li>
-                  <li className="flex items-center gap-2"><span>🤖</span>Focus on AI, Blockchain, Renewable Energy, and Med-Tech</li>
-                  <li className="flex items-center gap-2"><span>🚀</span>Active startup incubation and mentorship programs</li>
-                  <li className="flex items-center gap-2"><span>🌍</span>Participation in national and international collaborations</li>
-                  <li className="flex items-center gap-2"><span>🏛️</span>Modern infrastructure, expert faculty, and strong industry linkages</li>
-                  <li className="flex items-center gap-2"><span>🌟</span>Alumni making global impact in top organizations</li>
-                </ul>
-              </div>
-              <p className="text-base text-muted-foreground mt-2">
-                GEHU continues to inspire excellence by combining innovation, ethics, and leadership to prepare students for the challenges of tomorrow.
-              </p>
+              {aboutSection === "gehu" && (
+                <>
+                  <h2 className="text-3xl font-extrabold text-primary mb-2">About Graphic Era Hill University</h2>
+                  <p className="text-lg text-muted-foreground">
+                    <span className="font-semibold text-primary">Graphic Era Hill University (GEHU)</span> is a leading private university in Dehradun, Uttarakhand, established in 2011 by Prof. (Dr.) Kamal Ghanshala. Recognized under Section 2(f) of the UGC Act, 1956, GEHU is dedicated to transforming lives through quality, holistic education and fostering a culture of innovation and research. With a vibrant campus community of over <span className="font-semibold text-primary">17,000 students</span>, GEHU is known for its modern infrastructure, dynamic academic environment, and commitment to preparing students for global challenges. The university has earned prestigious accolades, including <span className="font-semibold text-primary">TCS Priority College Status</span> and the <span className="font-semibold text-primary">QS I-GAUGE Gold Rating</span> in July 2025.
+                  </p>
+                  <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
+                    <h3 className="text-xl font-semibold text-primary mb-2">Why GEHU?</h3>
+                    <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
+                      <li className="flex items-center gap-2"><span>🏅</span>Nationally and internationally recognized for academic excellence</li>
+                      <li className="flex items-center gap-2"><span>🤖</span>Strong focus on emerging technologies and interdisciplinary research</li>
+                      <li className="flex items-center gap-2"><span>🚀</span>Robust startup incubation, entrepreneurship, and mentorship ecosystem</li>
+                      <li className="flex items-center gap-2"><span>🌍</span>Extensive collaborations with top industries and global universities</li>
+                      <li className="flex items-center gap-2"><span>💼</span>Outstanding placement records with leading recruiters</li>
+                      <li className="flex items-center gap-2"><span>🌟</span>Active student life with diverse clubs, societies, and leadership opportunities</li>
+                      <li className="flex items-center gap-2"><span>🎓</span>Distinguished alumni making an impact worldwide</li>
+                    </ul>
+                  </div>
+                  <p className="text-base text-muted-foreground mt-2">
+                    GEHU continues to inspire excellence by combining innovation, ethics, and leadership, empowering students to become changemakers in a dynamic world.
+                  </p>
+                </>
+              )}
+              {aboutSection === "cse" && (
+                <>
+                  <h2 className="text-3xl font-extrabold text-primary mb-2">About CSE & SOC Department</h2>
+                  <p className="text-lg text-muted-foreground">
+                    The Department of Computer Science & Engineering at Graphic Era Hill University has a long-standing history of providing exceptional educational, research, internship, and career opportunities to its students. The department has produced successful alumni who have become leaders in various world-class multi-national organizations. It actively organizes national events and international conferences, fostering a culture of innovation, knowledge exchange, and global exposure.
+                    <br /><br />
+                    The School of Computing at Graphic Era Hill University is a premier academic department that focuses on providing high-quality education and research opportunities in the field of Computer Applications.
+                  </p>
+                  <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
+                    <h3 className="text-xl font-semibold text-primary mb-2">Key Highlights</h3>
+                    <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
+                      <li className="flex items-center gap-2"><span>💻</span>Cutting-edge curriculum in AI, ML, IoT, and more</li>
+                      <li className="flex items-center gap-2"><span>🏆</span>Active student chapters and coding clubs</li>
+                      <li className="flex items-center gap-2"><span>🤝</span>Strong industry partnerships and internships</li>
+                      <li className="flex items-center gap-2"><span>🔬</span>Research-driven faculty and student projects</li>
+                      <li className="flex items-center gap-2"><span>🌟</span>Consistent placement records in top companies</li>
+                    </ul>
+                  </div>
+                </>
+              )}
+              {aboutSection === "ieee" && (
+                <>
+                  <h2 className="text-3xl font-extrabold text-primary mb-2">About IEEE Student Branch GEHU</h2>
+                  <p className="text-lg text-muted-foreground">
+                    IEEE Student Branch, Graphic Era Hill University (IEEE-SB GEHU) is a vibrant platform for students to explore cutting-edge technology, innovation, and professional development. The branch organizes workshops, technical talks, coding competitions, hackathons, and research activities, enabling students to gain practical skills and industry exposure. IEEE-SB GEHU fosters collaboration, networking, and leadership, empowering members to contribute to the global engineering community while enhancing their technical and soft skills.
+                    <br /><br />
+                    <span className="font-semibold text-primary">AutoCom</span>, the International Conference on Automation and Computation organized by the branch, brings together global experts, researchers, and students to share insights on emerging technologies such as AI, cybersecurity, and assistive solutions. Events like AutoCom reflect the branch’s commitment to promoting cutting-edge research and fostering meaningful collaborations.
+                  </p>
+                  <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
+                    <h3 className="text-xl font-semibold text-primary mb-2">IEEE at GEHU</h3>
+                    <ul className="space-y-2 text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
+                      <li className="flex items-center gap-2"><span>🌐</span>Access to global IEEE resources and publications</li>
+                      <li className="flex items-center gap-2"><span>🤝</span>Collaboration with industry and academia</li>
+                      <li className="flex items-center gap-2"><span>🚀</span>Participation in technical events, conferences, and international symposiums like AutoCom</li>
+                      <li className="flex items-center gap-2"><span>🏆</span>Recognition and awards for outstanding contributions</li>
+                      <li className="flex items-center gap-2"><span>🌟</span>Leadership and professional development opportunities</li>
+                    </ul>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
