@@ -22,7 +22,7 @@ export default function AboutPage() {
       <Header />
       <section className="flex-1 max-w-7xl mx-auto px-2 sm:px-4 py-10 sm:py-16 flex flex-col items-center justify-center min-h-[80vh] gap-10 sm:gap-16">
         {/* Hero / Intro */}
-        <div className="w-full flex flex-col items-center text-center mb-4">
+        <div className="w-full flex flex-col items-center text-center mb-4 mt-12 sm:mt-16">
           <motion.h1 initial={{opacity:0, y:30}} animate={{opacity:1, y:0}} transition={{duration:0.7}} className="text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4 drop-shadow-lg">
             SAARTHI'25
           </motion.h1>
