@@ -113,7 +113,7 @@ export default function AboutPage() {
         <div className="w-full flex flex-col items-center text-center mt-6 sm:mt-8">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 text-primary">Ready to make an impact?</h3>
           <p className="text-muted-foreground mb-3 sm:mb-4 max-w-xl mx-auto text-base sm:text-lg">Join us at SAARTHI'25, collaborate with brilliant minds, and help shape a more accessible future for everyone.</p>
-          <a href="/register" className="inline-block px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-primary text-white font-semibold shadow-lg hover:bg-primary/90 transition">Register for SAARTHI'25</a>
+          <a href="https://unstop.com/" className="inline-block px-6 sm:px-8 py-2 sm:py-3 rounded-full bg-primary text-white font-semibold shadow-lg hover:bg-primary/90 transition">Register for SAARTHI'25</a>
         </div>
 
         {/* About Section with Tabs */}

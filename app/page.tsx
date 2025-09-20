@@ -659,35 +659,20 @@ export default function HomePage() {
                 <CardContent>
                   <form
                     className="space-y-4"
-                    onSubmit={async (e) => {
+                    onSubmit={e => {
                       e.preventDefault();
-                      setContactSuccess("");
-                      setContactError("");
                       if (!contactName || !contactEmail || !contactMessage) {
                         setContactError("All fields are required.");
                         return;
                       }
-                      setContactLoading(true);
-                      try {
-                        const res = await fetch("/api/messages", {
-                          method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({ name: contactName, email: contactEmail, message: contactMessage }),
-                        });
-                        const data = await res.json();
-                        if (res.ok && data.success) {
-                          setContactSuccess("Message sent successfully! We'll get back to you soon.");
-                          setContactName("");
-                          setContactEmail("");
-                          setContactMessage("");
-                        } else {
-                          setContactError(data.error || "Failed to send message.");
-                        }
-                      } catch (err) {
-                        setContactError("Failed to send message. Please try again later.");
-                      } finally {
-                        setContactLoading(false);
-                      }
+                      setContactError("");
+                      setContactSuccess("");
+                      // Construct mailto link
+                      const subject = encodeURIComponent("Contact Form Submission - SAARTHI'25");
+                      const body = encodeURIComponent(
+                        `Name: ${contactName}\nEmail: ${contactEmail}\n\nMessage:\n${contactMessage}`
+                      );
+                      window.location.href = `mailto:saarthi@gehu.ac.in?subject=${subject}&body=${body}`;
                     }}
                   >
                     <div className="grid md:grid-cols-2 gap-4">
