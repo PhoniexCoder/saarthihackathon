@@ -143,16 +143,26 @@ export default function HomePage() {
       <section className="pt-16 min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>
-            <h2 className="text-lg sm:text-2xl md:text-3xl font-bold mb-4 text-muted-foreground">
-              National Level Hackathon
-            </h2>
+            <div className="flex flex-row items-center justify-between gap-4 mb-6 w-full px-4">
+              <img
+                src="GEHU.png"
+                alt="GEHU"
+                className="h-14 w-auto sm:h-20 object-contain"
+              />
+              <img
+                src="ieeeb.png"
+                alt="IEEE"
+                className="h-14 w-auto sm:h-20 object-contain"
+              />
+            </div>
             <img
               src="/saarthi_log.png"
               alt="SAARTHI Logo"
               className="mx-auto w-250 neon-glow transition-transform duration-300 hover:scale-105"
             />
             <p className="text-base sm:text-lg mt-8 md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto">
-              Technology as an Enabler: Innovating Inclusive Solutions for Persons with Disabilities
+              Technology as an Enabler: Innovating Inclusive Solutions for
+              Persons with Disabilities
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 text-muted-foreground">
               <div className="flex items-center gap-2">
@@ -167,10 +177,11 @@ export default function HomePage() {
             {/* Add this below the date/location */}
             <div className="mb-8">
               <span className="block text-primary font-semibold text-base sm:text-lg">
-                Organised by Department of Computer Science & Engineering and School of Computing, GEHU
+                Organised by Department of Computer Science & Engineering and
+                School of Computing, GEHU
               </span>
             </div>
-            
+
             {/* Countdown Timer */}
             <div className="flex flex-row gap-4 max-w-2xl mx-auto mb-8 justify-center items-center flex-wrap sm:flex-nowrap">
               {Object.entries(timeLeft).map(([unit, value], idx) => {
@@ -179,7 +190,7 @@ export default function HomePage() {
                 const [rotation, setRotation] = useState(0);
                 useEffect(() => {
                   if (prev !== value) {
-                    setRotation(r => r + 180);
+                    setRotation((r) => r + 180);
                     setPrev(value);
                   }
                 }, [value]);
@@ -192,16 +203,24 @@ export default function HomePage() {
                     front={
                       <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
                         <CardContent className="p-0">
-                          <div className="text-2xl md:text-3xl font-bold text-primary">{value}</div>
-                          <div className="text-sm text-muted-foreground capitalize">{unit}</div>
+                          <div className="text-2xl md:text-3xl font-bold text-primary">
+                            {value}
+                          </div>
+                          <div className="text-sm text-muted-foreground capitalize">
+                            {unit}
+                          </div>
                         </CardContent>
                       </Card>
                     }
                     back={
                       <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
                         <CardContent className="p-0">
-                          <div className="text-2xl md:text-3xl font-bold text-primary">{value}</div>
-                          <div className="text-sm text-muted-foreground capitalize">{unit}</div>
+                          <div className="text-2xl md:text-3xl font-bold text-primary">
+                            {value}
+                          </div>
+                          <div className="text-sm text-muted-foreground capitalize">
+                            {unit}
+                          </div>
                         </CardContent>
                       </Card>
                     }
@@ -213,25 +232,34 @@ export default function HomePage() {
             <GSAPTextHover blendMode="multiply" scaleAmount={1.05}>
               <Button
                 size="lg"
-                className={`text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-transform ${shake ? 'animate-shake ring-4 ring-blue-400/40' : ''}`}
+                className={`text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-transform ${
+                  shake ? "animate-shake ring-4 ring-blue-400/40" : ""
+                }`}
                 asChild
               >
-                <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">Register Now</a>
+                <a
+                  href="https://unstop.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Register Now
+                </a>
               </Button>
             </GSAPTextHover>
-
           </motion.div>
         </div>
       </section>
-
 
       {/* Themes Section */}
       <section id="themes" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Hackathon Themes</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Hackathon Themes
+            </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Choose from these focus areas to create innovative accessibility solutions
+              Choose from these focus areas to create innovative accessibility
+              solutions
             </p>
           </motion.div>
 
@@ -244,15 +272,18 @@ export default function HomePage() {
             {[
               {
                 title: "Assistive Technology",
-                description: "Develop tools and devices that assist persons with disabilities in daily activities",
+                description:
+                  "Develop tools and devices that assist persons with disabilities in daily activities",
               },
               {
                 title: "Digital Accessibility",
-                description: "Create inclusive digital experiences and accessible web/mobile applications",
+                description:
+                  "Create inclusive digital experiences and accessible web/mobile applications",
               },
               {
                 title: "Communication Aids",
-                description: "Build solutions that enhance communication for people with speech or hearing impairments",
+                description:
+                  "Build solutions that enhance communication for people with speech or hearing impairments",
               },
               {
                 title: "Mobility Solutions",
@@ -261,11 +292,13 @@ export default function HomePage() {
               },
               {
                 title: "Educational Tools",
-                description: "Develop inclusive learning platforms and educational accessibility tools",
+                description:
+                  "Develop inclusive learning platforms and educational accessibility tools",
               },
               {
                 title: "Employment Solutions",
-                description: "Create technology that enhances employment opportunities and workplace accessibility",
+                description:
+                  "Create technology that enhances employment opportunities and workplace accessibility",
               },
             ].map((theme, index) => (
               <motion.div key={index} variants={fadeInUp}>
@@ -317,7 +350,8 @@ export default function HomePage() {
               },
               {
                 icon: "🖥",
-                title: "Track 4: Core Web Accessibility & Assistive Tech Integration",
+                title:
+                  "Track 4: Core Web Accessibility & Assistive Tech Integration",
                 desc: "Building websites that align with WCAG standards and work with assistive technologies.",
                 features:
                   "Focus: keyboard navigation, ARIA usage, semantic HTML, compatibility with screen readers, braille displays, and switch devices.",
@@ -365,7 +399,8 @@ export default function HomePage() {
               },
               {
                 icon: "💡",
-                title: "Track 10: Open Innovation for Disabilities & Accessibility",
+                title:
+                  "Track 10: Open Innovation for Disabilities & Accessibility",
                 desc: "Any creative solution that addresses challenges faced by persons with disabilities and promotes accessibility.",
                 features:
                   "Examples: novel assistive devices, inclusive apps, awareness platforms, or any impactful idea that doesn't fit other tracks.",
@@ -382,12 +417,18 @@ export default function HomePage() {
                     <div
                       className={`relative bg-gradient-to-br from-white via-blue-50 to-pink-50 rounded-xl shadow-xl p-6 flex flex-col gap-3 border-l-8 ${track.border} hover:scale-[1.03] hover:shadow-2xl transition-transform duration-300 max-w-xl w-full`}
                     >
-                      <span className="text-4xl mb-2 drop-shadow-lg">{track.icon}</span>
+                      <span className="text-4xl mb-2 drop-shadow-lg">
+                        {track.icon}
+                      </span>
                       <h4 className="font-extrabold text-lg md:text-xl text-primary mb-1">
                         {track.title}
                       </h4>
-                      <p className="text-base text-gray-700 mb-1">{track.desc}</p>
-                      <p className="text-sm text-muted-foreground">{track.features}</p>
+                      <p className="text-base text-gray-700 mb-1">
+                        {track.desc}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        {track.features}
+                      </p>
                     </div>
                   </div>
                 );
@@ -398,12 +439,16 @@ export default function HomePage() {
                   key={idx}
                   className={`relative bg-gradient-to-br from-white via-blue-50 to-pink-50 rounded-xl shadow-xl p-6 flex flex-col gap-3 border-l-8 ${track.border} hover:scale-[1.03] hover:shadow-2xl transition-transform duration-300`}
                 >
-                  <span className="text-4xl mb-2 drop-shadow-lg">{track.icon}</span>
+                  <span className="text-4xl mb-2 drop-shadow-lg">
+                    {track.icon}
+                  </span>
                   <h4 className="font-extrabold text-lg md:text-xl text-primary mb-1">
                     {track.title}
                   </h4>
                   <p className="text-base text-gray-700 mb-1">{track.desc}</p>
-                  <p className="text-sm text-muted-foreground">{track.features}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {track.features}
+                  </p>
                 </div>
               );
             })}
@@ -414,7 +459,9 @@ export default function HomePage() {
       {/* Schedule Section */}
       <section id="schedule" className="py-20 bg-muted/30 min-h-screen">
         <div className="max-w-3xl w-full mx-auto flex flex-col items-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Event Schedule</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+            Event Schedule
+          </h2>
           <p className="text-lg text-muted-foreground mb-8 text-center">
             24 hours of innovation, collaboration, and impact
           </p>
@@ -436,18 +483,28 @@ export default function HomePage() {
                 transition={{ duration: 0.7, delay: idx * 0.1 }}
               >
                 {/* Timeline content card */}
-                <div className={`
+                <div
+                  className={`
                   w-full sm:w-[48%] bg-white/90 backdrop-blur-lg rounded-xl shadow-xl px-6 py-4
                   flex flex-col gap-2
-                  ${idx % 2 === 0 ? "ml-0 sm:ml-8 text-left" : "mr-0 sm:mr-8 text-right"}
+                  ${
+                    idx % 2 === 0
+                      ? "ml-0 sm:ml-8 text-left"
+                      : "mr-0 sm:mr-8 text-right"
+                  }
                   border border-blue-100
                   transition-transform duration-300 group-hover:scale-[1.03]
-                `}>
+                `}
+                >
                   <div className="flex items-center gap-2 mb-1">
                     <Calendar className="w-5 h-5 text-primary" />
-                    <span className="font-semibold text-primary text-base">{item.date}</span>
+                    <span className="font-semibold text-primary text-base">
+                      {item.date}
+                    </span>
                   </div>
-                  <div className="text-lg font-semibold text-gray-900">{item.event}</div>
+                  <div className="text-lg font-semibold text-gray-900">
+                    {item.event}
+                  </div>
                 </div>
                 {/* Timeline dot */}
                 <div className="relative z-10 flex flex-col items-center">
@@ -511,8 +568,18 @@ export default function HomePage() {
               Collaborate With Us
             </h2>
             <p className="text-base md:text-lg text-gray-700 mb-7 text-center">
-              We're looking for <span className="text-primary font-semibold">sponsors, judges, mentors, and community partners</span> to help make <span className="text-pink-600 font-semibold">SAARTHI'25</span> a massive success.<br />
-              <span className="font-semibold text-primary">Interested?</span> Let's collaborate!
+              We're looking for{" "}
+              <span className="text-primary font-semibold">
+                sponsors, judges, mentors, and community partners
+              </span>{" "}
+              to help make{" "}
+              <span className="text-pink-600 font-semibold">SAARTHI'25</span> a
+              massive success.
+              <br />
+              <span className="font-semibold text-primary">
+                Interested?
+              </span>{" "}
+              Let's collaborate!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
               <a
@@ -532,54 +599,75 @@ export default function HomePage() {
         </div>
       </section>
 
-
       {/* FAQ Section */}
       <section id="faq" className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted-foreground">Everything you need to know about SAARTHI'25</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Everything you need to know about SAARTHI'25
+            </p>
           </motion.div>
 
           <motion.div {...fadeInUp}>
             <Accordion type="single" collapsible className="space-y-4">
               <AccordionItem value="item-1">
-                <AccordionTrigger>Who can participate in SAARTHI'25?</AccordionTrigger>
+                <AccordionTrigger>
+                  Who can participate in SAARTHI'25?
+                </AccordionTrigger>
                 <AccordionContent>
-                  SAARTHI'25 is open to all university and college students across India. Both undergraduate and
-                  postgraduate students can participate. Cross-university teams are encouraged to promote collaboration.
+                  SAARTHI'25 is open to all university and college students
+                  across India. Both undergraduate and postgraduate students can
+                  participate. Cross-university teams are encouraged to promote
+                  collaboration.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-2">
-                <AccordionTrigger>What should I bring to the hackathon?</AccordionTrigger>
+                <AccordionTrigger>
+                  What should I bring to the hackathon?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Bring your laptop, chargers, any hardware you might need, and your creativity! We'll provide meals,
-                  snacks, and a comfortable workspace. Don't forget to bring your student ID for verification.
+                  Bring your laptop, chargers, any hardware you might need, and
+                  your creativity! We'll provide meals, snacks, and a
+                  comfortable workspace. Don't forget to bring your student ID
+                  for verification.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-3">
-                <AccordionTrigger>Are there any participation fees?</AccordionTrigger>
+                <AccordionTrigger>
+                  Are there any participation fees?
+                </AccordionTrigger>
                 <AccordionContent>
-                  Participation in the first round (PPT submission) is completely free. Teams shortlisted for the final round will be required to pay a nominal participation fee of ₹600, to be submitted online by 1st November 2025.
+                  Participation in the first round (PPT submission) is
+                  completely free. Teams shortlisted for the final round will be
+                  required to pay a nominal participation fee of ₹600, to be
+                  submitted online by 1st November 2025.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-4">
                 <AccordionTrigger>How are projects evaluated?</AccordionTrigger>
                 <AccordionContent>
-                  Projects are evaluated based on innovation, technical implementation, user experience, social impact,
-                  and presentation quality. Our panel of expert judges will assess each project fairly and provide
-                  constructive feedback.
+                  Projects are evaluated based on innovation, technical
+                  implementation, user experience, social impact, and
+                  presentation quality. Our panel of expert judges will assess
+                  each project fairly and provide constructive feedback.
                 </AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="item-5">
-                <AccordionTrigger>Can I work on my project before the hackathon?</AccordionTrigger>
+                <AccordionTrigger>
+                  Can I work on my project before the hackathon?
+                </AccordionTrigger>
                 <AccordionContent>
-                  No, all development work must be done during the 24-hour hackathon period. However, you can research
-                  ideas, plan your approach, and prepare any necessary accounts or tools beforehand.
+                  No, all development work must be done during the 24-hour
+                  hackathon period. However, you can research ideas, plan your
+                  approach, and prepare any necessary accounts or tools
+                  beforehand.
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
@@ -591,8 +679,12 @@ export default function HomePage() {
       <section id="contact" className="py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
-            <p className="text-lg text-muted-foreground">Have questions? We're here to help!</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Get In Touch
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Have questions? We're here to help!
+            </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12">
@@ -600,14 +692,18 @@ export default function HomePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Contact Information</CardTitle>
-                  <CardDescription>Reach out to us for any queries</CardDescription>
+                  <CardDescription>
+                    Reach out to us for any queries
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-center gap-4">
                     <Mail className="w-5 h-5 text-primary" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-muted-foreground">saarthi@gehu.ac.in</p>
+                      <p className="text-muted-foreground">
+                        saarthi@gehu.ac.in
+                      </p>
                     </div>
                   </div>
 
@@ -654,12 +750,14 @@ export default function HomePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Send us a Message</CardTitle>
-                  <CardDescription>We'll get back to you as soon as possible</CardDescription>
+                  <CardDescription>
+                    We'll get back to you as soon as possible
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form
                     className="space-y-4"
-                    onSubmit={e => {
+                    onSubmit={(e) => {
                       e.preventDefault();
                       if (!contactName || !contactEmail || !contactMessage) {
                         setContactError("All fields are required.");
@@ -668,7 +766,9 @@ export default function HomePage() {
                       setContactError("");
                       setContactSuccess("");
                       // Construct mailto link
-                      const subject = encodeURIComponent("Contact Form Submission - SAARTHI'25");
+                      const subject = encodeURIComponent(
+                        "Contact Form Submission - SAARTHI'25"
+                      );
                       const body = encodeURIComponent(
                         `Name: ${contactName}\nEmail: ${contactEmail}\n\nMessage:\n${contactMessage}`
                       );
@@ -677,32 +777,38 @@ export default function HomePage() {
                   >
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Name</label>
+                        <label className="text-sm font-medium mb-2 block">
+                          Name
+                        </label>
                         <Input
                           placeholder="Your full name"
                           value={contactName}
-                          onChange={e => setContactName(e.target.value)}
+                          onChange={(e) => setContactName(e.target.value)}
                           required
                         />
                       </div>
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Email</label>
+                        <label className="text-sm font-medium mb-2 block">
+                          Email
+                        </label>
                         <Input
                           type="email"
                           placeholder="your.email@example.com"
                           value={contactEmail}
-                          onChange={e => setContactEmail(e.target.value)}
+                          onChange={(e) => setContactEmail(e.target.value)}
                           required
                         />
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium mb-2 block">Message</label>
+                      <label className="text-sm font-medium mb-2 block">
+                        Message
+                      </label>
                       <Textarea
                         placeholder="Your message here..."
                         rows={5}
                         value={contactMessage}
-                        onChange={e => setContactMessage(e.target.value)}
+                        onChange={(e) => setContactMessage(e.target.value)}
                         required
                       />
                     </div>
@@ -710,9 +816,15 @@ export default function HomePage() {
                       <div className="text-red-500 text-sm">{contactError}</div>
                     )}
                     {contactSuccess && (
-                      <div className="text-green-600 text-sm">{contactSuccess}</div>
+                      <div className="text-green-600 text-sm">
+                        {contactSuccess}
+                      </div>
                     )}
-                    <Button type="submit" className="w-full" disabled={contactLoading}>
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      disabled={contactLoading}
+                    >
                       {contactLoading ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
