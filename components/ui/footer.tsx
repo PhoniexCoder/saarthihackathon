@@ -8,8 +8,7 @@ export default function Footer() {
           {/* Branding & Logos */}
           <div className="flex flex-col items-center md:items-start md:w-1/3 mb-8 md:mb-0">
             <div className="flex items-center space-x-4 mb-4">
-              <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-12 w-12 object-contain" />
-              <span className="text-2xl font-extrabold tracking-tight">SAARTHI'25</span>
+              <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-10 w-full object-contain" />
             </div>
             <p className="text-gray-400 text-sm text-center md:text-left max-w-xs">
               Innovating inclusive solutions for persons with disabilities through technology.<br />

@@ -20,10 +20,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 relative">
           <a href="/" className="flex items-center space-x-3 group">
-            <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-10 w-10 neon-glow" />
-            <GSAPTextHover blendMode="difference" scaleAmount={1.05}>
-              <span className="text-xl font-bold neon-glow text-gray-900">SAARTHI'25</span>
-            </GSAPTextHover>
+            <img src="/saarthi_log.png" alt="SAARTHI Logo" className="h-10 w-full neon-glow" />
           </a>
           {/* Desktop nav */}
           <div className="hidden md:flex items-center space-x-8">

@@ -146,12 +146,12 @@ export default function HomePage() {
             <h2 className="text-lg sm:text-2xl md:text-3xl font-bold mb-4 text-muted-foreground">
               National Level Hackathon
             </h2>
-            <GSAPTextHover blendMode="screen" scaleAmount={1.2}>
-              <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                SAARTHI'25
-              </h1>
-            </GSAPTextHover>
-            <p className="text-base sm:text-lg md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto">
+            <img
+              src="/saarthi_log.png"
+              alt="SAARTHI Logo"
+              className="mx-auto w-250 neon-glow transition-transform duration-300 hover:scale-105"
+            />
+            <p className="text-base sm:text-lg mt-8 md:text-2xl text-muted-foreground mb-4 max-w-4xl mx-auto">
               Technology as an Enabler: Innovating Inclusive Solutions for Persons with Disabilities
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 text-muted-foreground">
