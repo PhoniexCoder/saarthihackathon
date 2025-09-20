@@ -74,25 +74,36 @@ export default function TeamPage() {
       <Header />
       <main className="min-h-screen bg-gradient-to-br from-background to-muted/60 pb-20 pt-16">
         {/* Hero Section */}
-        <section className="w-full py-16 bg-gradient-to-r from-primary/80 to-secondary/80 text-center mb-12 shadow-lg">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white drop-shadow-lg mb-2">Meet the Organizing Team</h1>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">The passionate people making Saarthi Hackathon possible.</p>
+        <section className="w-full py-10 sm:py-16 bg-gradient-to-r from-primary/80 to-secondary/80 text-center mb-8 sm:mb-12 shadow-lg">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white drop-shadow-lg mb-2">
+            Meet the Organizing Team
+          </h1>
+          <p className="text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
+            The passionate people making Saarthi Hackathon possible.
+          </p>
         </section>
 
         {/* Committees Rendered from Data Structure */}
-        <div className="flex flex-col items-center justify-center w-full space-y-16">
+        <div className="flex flex-col items-center justify-center w-full space-y-10 sm:space-y-16 px-2 sm:px-0">
           {committees.map((committee) => (
             <div key={committee.name} className="w-full max-w-5xl mx-auto">
-              <h2 className="text-2xl font-bold text-primary mb-6 text-center">{committee.name}</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-primary mb-4 sm:mb-6 text-center">
+                {committee.name}
+              </h2>
               <div className="w-full flex justify-center">
                 <div
                   className={`
-                    grid gap-8 min-h-[60px] w-full 
+                    grid gap-6 sm:gap-8 min-h-[60px] w-full
                     place-items-center
-                    ${committee.members.length === 1 ? "grid-cols-1" : ""}
-                    ${committee.members.length === 2 ? "grid-cols-1 sm:grid-cols-2" : ""}
-                    ${committee.members.length === 3 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : ""}
-                    ${committee.members.length >= 4 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : ""}
+                    ${
+                      committee.members.length === 1
+                        ? "grid-cols-1"
+                        : committee.members.length === 2
+                        ? "grid-cols-1 xs:grid-cols-2"
+                        : committee.members.length === 3
+                        ? "grid-cols-1 xs:grid-cols-2 md:grid-cols-3"
+                        : "grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                    }
                   `}
                 >
                   {committee.members.length > 0 ? (
@@ -101,17 +112,17 @@ export default function TeamPage() {
                       return (
                         <div
                           key={i}
-                          className="group w-80 mx-auto relative card-glass transition-all duration-300 overflow-hidden"
+                          className="group w-72 sm:w-80 mx-auto relative card-glass transition-all duration-300 overflow-hidden"
                           style={{ zIndex: 10, minHeight: cardMinHeight }}
                         >
                           <div className="flex flex-col items-center w-full">
-                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-28 h-28 bg-gradient-to-br from-primary/80 to-secondary/80 rounded-full blur-2xl opacity-40 z-0" />
+                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 sm:w-28 h-24 sm:h-28 bg-gradient-to-br from-primary/80 to-secondary/80 rounded-full blur-2xl opacity-40 z-0" />
                             <div className="relative flex flex-col items-center pt-8 mb-2 z-10">
-                              <div className="relative w-24 h-24 drop-shadow-xl">
+                              <div className="relative w-20 h-20 sm:w-24 sm:h-24 drop-shadow-xl">
                                 <img
                                   src={member.image}
                                   alt={member.name}
-                                  className="w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-xl bg-white"
+                                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border-4 border-white shadow-xl bg-white"
                                 />
                                 {member.linkedin && (
                                   <a
@@ -130,9 +141,9 @@ export default function TeamPage() {
                                 )}
                               </div>
                             </div>
-                            <div className="flex flex-col items-center px-6 pb-6 pt-2 w-full z-10">
-                              <span className="text-xl font-extrabold text-gray-900 text-center w-full break-words" title={member.name}>{member.name}</span>
-                              <span className="text-base font-medium text-primary/80 text-center mt-1 mb-2 w-full break-words" title={member.role}>{member.role}</span>
+                            <div className="flex flex-col items-center px-4 sm:px-6 pb-6 pt-2 w-full z-10">
+                              <span className="text-lg sm:text-xl font-extrabold text-gray-900 text-center w-full break-words" title={member.name}>{member.name}</span>
+                              <span className="text-sm sm:text-base font-medium text-primary/80 text-center mt-1 mb-2 w-full break-words" title={member.role}>{member.role}</span>
                             </div>
                           </div>
                         </div>
