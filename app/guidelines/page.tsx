@@ -45,7 +45,17 @@ export default function GuidelinesPage() {
                 <h2 className="text-lg md:text-xl font-bold text-blue-700 dark:text-blue-300">Registration & Participation</h2>
               </div>
               <ul className="list-disc list-inside space-y-2 text-base text-muted-foreground ml-2">
-                <li>All teams must register through the official SAARTHI website before the deadline.</li>
+                <li>All teams must register via{" "}
+                  <a
+                    href="https://unstop.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2 hover:text-primary/80"
+                  >
+                    Unstop
+                  </a>{" "}
+                  before the deadline.
+                </li>
                 <li>Each team must submit a brief idea proposal during registration.</li>
                 <li>Shortlisted teams will receive confirmation via email and must confirm attendance.</li>
               </ul>

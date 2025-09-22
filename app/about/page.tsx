@@ -149,7 +149,7 @@ export default function AboutPage() {
                 }`}
                 onClick={() => setAboutSection("ieee")}
               >
-                About IEEE SB, GEHU
+                About IEEE SB, GEHU Dehradun
               </button>
             </div>
             {/* Image at the top */}
@@ -173,7 +173,7 @@ export default function AboutPage() {
               {aboutSection === "ieee" && (
                 <img
                   src="/ieee_logo.png"
-                  alt="IEEE Student Branch GEHU"
+                  alt="IEEE Student Branch GEHU, Dehradun"
                   className="object-contain w-full max-h-[160px] sm:max-h-[320px] p-2 sm:p-4 md:p-8"
                   style={{ background: "white" }}
                 />
@@ -226,14 +226,14 @@ export default function AboutPage() {
               )}
               {aboutSection === "ieee" && (
                 <>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mb-2">About IEEE Student Branch GEHU</h2>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-primary mb-2">About IEEE Student Branch GEHU, Dehradun</h2>
                   <p className="text-base sm:text-lg text-muted-foreground">
                     IEEE Student Branch, Graphic Era Hill University (IEEE-SB GEHU) is a vibrant platform for students to explore cutting-edge technology, innovation, and professional development. The branch organizes workshops, technical talks, coding competitions, hackathons, and research activities, enabling students to gain practical skills and industry exposure. IEEE-SB GEHU fosters collaboration, networking, and leadership, empowering members to contribute to the global engineering community while enhancing their technical and soft skills.
                     <br /><br />
                     <span className="font-semibold text-primary">AutoCom</span>, the International Conference on Automation and Computation organized by the branch, brings together global experts, researchers, and students to share insights on emerging technologies such as AI, cybersecurity, and assistive solutions. Events like AutoCom reflect the branch’s commitment to promoting cutting-edge research and fostering meaningful collaborations.
                   </p>
                   <div className="bg-white/95 dark:bg-white/10 rounded-xl shadow p-4 mt-2 w-full max-w-xl mx-auto">
-                    <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2">IEEE at GEHU</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2">IEEE at GEHU, Dehradun</h3>
                     <ul className="space-y-2 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-200 text-left">
                       <li className="flex items-center gap-2"><span>🌐</span>Access to global IEEE resources and publications</li>
                       <li className="flex items-center gap-2"><span>🤝</span>Collaboration with industry and academia</li>

@@ -96,13 +96,15 @@ export default function TeamPage() {
                     grid gap-6 sm:gap-8 min-h-[60px] w-full
                     place-items-center
                     ${
-                      committee.members.length === 1
+                      committee.name === "Patrons"
+                        ? "grid-cols-1 sm:grid-cols-2"
+                        : committee.members.length === 1
                         ? "grid-cols-1"
                         : committee.members.length === 2
-                        ? "grid-cols-1 xs:grid-cols-2"
+                        ? "grid-cols-1 sm:grid-cols-2"
                         : committee.members.length === 3
-                        ? "grid-cols-1 xs:grid-cols-2 md:grid-cols-3"
-                        : "grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                        ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+                        : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                     }
                   `}
                 >

@@ -152,21 +152,21 @@ export default function HomePage() {
               Technology as an Enabler: Innovating Inclusive Solutions for
               Persons with Disabilities
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                <span>8th - 9th November 2025</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5" />
-                <span>Graphic Era Hill University, Dehradun</span>
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8">
+              <Badge className="px-3 py-2 text-sm sm:text-base font-semibold flex items-center gap-2 bg-primary/10 text-primary border border-primary/30 rounded-full shadow-sm">
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
+                8th - 9th November 2025
+              </Badge>
+              <Badge className="px-3 py-2 text-sm sm:text-base font-semibold flex items-center gap-2 bg-pink-100/60 text-pink-700 border border-pink-300 rounded-full shadow-sm">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
+                Graphic Era Hill University, Dehradun
+              </Badge>
             </div>
             {/* Add this below the date/location */}
             <div className="mb-8">
               <span className="block text-primary font-semibold text-base sm:text-lg">
                 Organised by Department of Computer Science & Engineering and
-                School of Computing, GEHU
+                School of Computing, GEHU Dehradun
               </span>
             </div>
 
@@ -633,7 +633,7 @@ export default function HomePage() {
                   Participation in the first round (PPT submission) is
                   completely free. Teams shortlisted for the final round will be
                   required to pay a nominal participation fee of ₹600, to be
-                  submitted online by 1st November 2025.
+                  submitted online by 20th October 2025.
                 </AccordionContent>
               </AccordionItem>
 
