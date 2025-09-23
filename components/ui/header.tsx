@@ -60,7 +60,7 @@ export default function Header() {
             ))}
             <Button size="lg" className="text-lg px-8 py-3 ml-2" asChild>
               <a href="https://unstop.com/" target="_blank" rel="noopener noreferrer">
-                Register Now
+                Coming soon
               </a>
             </Button>
           </div>

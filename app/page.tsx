@@ -220,18 +220,12 @@ export default function HomePage() {
             <GSAPTextHover blendMode="multiply" scaleAmount={1.05}>
               <Button
                 size="lg"
-                className={`text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-transform ${
-                  shake ? "animate-shake ring-4 ring-blue-400/40" : ""
-                }`}
-                asChild
+                className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 opacity-80 cursor-not-allowed"
+                disabled
+                aria-disabled="true"
+                title="Registration opens soon"
               >
-                <a
-                  href="https://unstop.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Register Now
-                </a>
+                Coming Soon
               </Button>
             </GSAPTextHover>
           </motion.div>
