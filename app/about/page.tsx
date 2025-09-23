@@ -172,9 +172,9 @@ export default function AboutPage() {
               )}
               {aboutSection === "ieee" && (
                 <img
-                  src="/ieee_logo.png"
+                  src="/ieee.png"
                   alt="IEEE Student Branch GEHU, Dehradun"
-                  className="object-contain w-full max-h-[160px] sm:max-h-[320px] p-2 sm:p-4 md:p-8"
+                  className="object-contain w-full max-h-[220px] sm:max-h-[480px] p-2 sm:p-4 md:p-8"
                   style={{ background: "white" }}
                 />
               )}
