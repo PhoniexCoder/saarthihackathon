@@ -26,7 +26,7 @@ export default function Footer() {
                 { href: '/', label: 'Home' },
                 { href: '/about', label: 'About' },
                 { href: '/#themes', label: 'Problem Statements' },
-                { href: 'https://unstop.com/', label: 'Register' },
+                { href: 'https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475', label: 'Register' },
                 { href: '/sponsors', label: 'Sponsorship' },
                 { href: '/#contact', label: 'Contact' },
               ].map(link => (

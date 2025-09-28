@@ -47,7 +47,7 @@ export default function GuidelinesPage() {
               <ul className="list-disc list-inside space-y-2 text-base text-muted-foreground ml-2">
                 <li>All teams must register via{" "}
                   <a
-                    href="https://unstop.com/"
+                    href="https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary underline underline-offset-2 hover:text-primary/80"

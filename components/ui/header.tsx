@@ -58,13 +58,10 @@ export default function Header() {
                 </a>
               </GSAPTextHover>
             ))}
-            <Button
-              size="lg"
-              className="text-lg px-8 py-3 ml-2 opacity-70 cursor-not-allowed"
-              disabled
-              title="Registration opens soon"
-            >
-              Coming Soon
+            <Button size="lg" className="text-lg px-8 py-3 ml-2" asChild>
+              <a href="https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475" target="_blank" rel="noopener noreferrer">
+                Register now
+              </a>
             </Button>
           </div>
 
@@ -110,14 +107,15 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="mt-4">
-                  <Button
-                    size="lg"
-                    className="w-full text-lg font-bold text-center bg-primary text-white rounded px-4 py-3 shadow opacity-70 cursor-not-allowed"
-                    disabled
-                    title="Registration opens soon"
+                  <a
+                    href="https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-lg font-bold text-center bg-primary text-white rounded px-4 py-3 shadow hover:bg-primary/90 transition"
+                    onClick={() => setMobileOpen(false)}
                   >
-                    Coming Soon
-                  </Button>
+                    Register Now
+                  </a>
                 </div>
               </div>
             </div>
