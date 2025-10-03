@@ -124,7 +124,7 @@ export default function SponsorsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full justify-center">
               <a
-                href="https://drive.google.com/file/d/1I7j4W91etroApp7DXGBpGI5qnVKCaQRn/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1O0fOoe3c0oPdaJwUGvGNyCDe4x0jLW48/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block px-6 sm:px-8 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-pink-500 text-white font-bold text-base sm:text-lg shadow-lg hover:scale-105 transition-transform tracking-wide text-center"
