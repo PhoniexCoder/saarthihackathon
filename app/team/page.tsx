@@ -60,10 +60,11 @@ const committees: Committee[] = [
   {
     name: "Student Committee",
     members: [
-      { name: "Anshul Panwar", role: "Student Member", image: "/AP.jpg", linkedin: "https://www.linkedin.com/in/anshul-panwar-21aa3233b/", about: "Attended Graphic Era Hill University." },
-      { name: "Srishti Rana", role: "Student Member", image: "/SR.jpg", linkedin: "https://www.linkedin.com/in/srishti-rana-ab4641305/", about: "B.Tech CSE (AI-DS) | AI and Data Science Practitioner" },
-      { name: "Prins Kanyal", role: "Student Member", image: "/pk.jpg", linkedin: "https://www.linkedin.com/in/prins-kanyal", about: "Handling sponsorships and partnerships." },
-      { name: "Priyanshu Solanki", role: "Student Member", image: "/PS.jpg", linkedin: "https://www.linkedin.com/in/priyanshu-solanki-625b81301", about: "Overseeing marketing and promotions." }
+      { name: "Anshul Panwar", role: "Student Member", image: "/AP.jpg", linkedin: "https://www.linkedin.com/in/anshul-panwar-21aa3233b/" },
+      { name: "Srishti Rana", role: "Student Member", image: "/SR.jpg", linkedin: "https://www.linkedin.com/in/srishti-rana-ab4641305/" },
+      { name: "Prins Kanyal", role: "Student Member", image: "/pk.jpg", linkedin: "https://www.linkedin.com/in/prins-kanyal" },
+      { name: "Priyanshu Solanki", role: "Student Member", image: "/PS.jpg", linkedin: "https://www.linkedin.com/in/priyanshu-solanki-625b81301" },
+      { name: "Nagendra Singh Rana", role: "Student Member", image: "/NS.png", linkedin: "https://www.linkedin.com/in/nagendra-singh-rana-065bb4336" }
     ]
   }
 ];
