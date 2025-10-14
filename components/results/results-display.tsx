@@ -124,7 +124,7 @@ export function ResultsDisplay() {
 						<div className="flex flex-col items-center justify-center gap-2 mt-4 text-muted-foreground">
 							<div className="flex items-center space-x-2">
 								<Calendar className="h-5 w-5" />
-								<span>Round 1 Results announced on <span className="font-semibold text-primary">15 Oct 2025</span></span>
+								<span>Round 1 Results announced on <span className="font-semibold text-primary">17 Oct 2025</span></span>
 							</div>
 							<div className="flex items-center space-x-2">
 								<Calendar className="h-5 w-5" />
