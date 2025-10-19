@@ -5,7 +5,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/ui/header"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Trophy, Medal, Award, Star, Users, Calendar, ExternalLink } from "lucide-react"
+import {
+  Trophy,
+  Medal,
+  Award,
+  Star,
+  Users,
+  Calendar,
+  ExternalLink,
+  CheckCircle2,
+  Mail,
+  Wallet,
+  Clock,
+  ListChecks,
+} from "lucide-react"
 import { motion } from "framer-motion"
 
 // Animated background elements (blobs, SVGs)
@@ -132,6 +145,73 @@ export function ResultsDisplay() {
 							</div>
 						</div>
 					</motion.div>
+
+					{/* Status & Next Steps */}
+					<motion.section
+						className="mb-12"
+						initial={{ opacity: 0, y: 12 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
+					>
+						<div className="relative overflow-hidden rounded-2xl border bg-white/90 dark:bg-white/10 shadow-md p-6 md:p-8">
+							<div className="absolute inset-0 -z-10 opacity-30 bg-gradient-to-r from-green-200 via-blue-200 to-pink-200 blur-3xl" />
+							<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+								<div className="flex items-center gap-3">
+									<span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-green-100 text-green-700">
+										<CheckCircle2 className="h-6 w-6" />
+									</span>
+									<div>
+										<p className="text-sm uppercase tracking-wider text-green-700 font-semibold">Status</p>
+										<h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
+											PPT Round Submissions Reviewed
+										</h3>
+									</div>
+								</div>
+								<Badge className="w-fit bg-green-600 text-white hover:bg-green-600/90">
+									✅ All PPTs Reviewed
+								</Badge>
+							</div>
+
+							<div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+								{/* Shortlisted Teams */}
+								<div className="rounded-xl border bg-white/80 dark:bg-white/5 p-4 md:p-5">
+									<div className="flex items-center gap-2 mb-2">
+										<Mail className="h-5 w-5 text-blue-600" />
+										<h4 className="font-semibold">Shortlisted Teams</h4>
+									</div>
+									<p className="text-sm text-muted-foreground">
+										Emails have been sent to all shortlisted teams. Please check your inbox (and spam) for confirmation and next steps.
+									</p>
+								</div>
+
+								{/* Participation Fee */}
+								<div className="rounded-xl border bg-white/80 dark:bg-white/5 p-4 md:p-5">
+									<div className="flex items-center gap-2 mb-2">
+										<Wallet className="h-5 w-5 text-rose-600" />
+										<h4 className="font-semibold">Participation Fee</h4>
+									</div>
+									<p className="text-sm text-muted-foreground">
+										Complete the <span className="font-semibold">₹600</span> registration fee to confirm your spot.
+									</p>
+									<div className="mt-2 inline-flex items-center gap-2 rounded-full bg-rose-50 text-rose-700 border border-rose-200 px-3 py-1 text-xs font-semibold">
+										<Clock className="h-4 w-4" />
+										Deadline: 22 Oct 2025
+									</div>
+								</div>
+
+								{/* Waiting List Policy */}
+								<div className="rounded-xl border bg-white/80 dark:bg-white/5 p-4 md:p-5">
+									<div className="flex items-center gap-2 mb-2">
+										<ListChecks className="h-5 w-5 text-purple-600" />
+										<h4 className="font-semibold">Waiting List Policy</h4>
+									</div>
+									<p className="text-sm text-muted-foreground">
+										If a shortlisted team misses the payment deadline, we’ll invite teams from the waiting list to participate.
+									</p>
+								</div>
+							</div>
+						</div>
+					</motion.section>
 
 					{/* Winners Grid */}
 					{/*

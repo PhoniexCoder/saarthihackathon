@@ -50,18 +50,13 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8 z-[60] relative">
             {navLinks.map((link) => (
               <GSAPTextHover key={link.href} blendMode="overlay" scaleAmount={1.1}>
-                <a
-                  href={link.href}
-                  className="nav-link-tech text-black font-semibold"
-                >
+                <a href={link.href} className="nav-link-tech text-black font-semibold">
                   {link.label}
                 </a>
               </GSAPTextHover>
             ))}
             <Button size="lg" className="text-lg px-8 py-3 ml-2" asChild>
-              <a href="https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475" target="_blank" rel="noopener noreferrer">
-                Register now
-              </a>
+              <a href="/results">Round 1 Results</a>
             </Button>
           </div>
 
@@ -90,9 +85,7 @@ export default function Header() {
 
           {/* Mobile nav overlay */}
           {mobileOpen && (
-            <div
-              className={`${mobilePanelBase} ${scrolled ? mobilePanelScrolled : mobilePanelTop}`}
-            >
+            <div className={`${mobilePanelBase} ${scrolled ? mobilePanelScrolled : mobilePanelTop}`}>
               <div className="flex flex-col py-6 px-6">
                 {navLinks.map((link, idx) => (
                   <div key={link.href}>
@@ -107,15 +100,15 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="mt-4">
-                  <a
-                    href="https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-lg font-bold text-center bg-primary text-white rounded px-4 py-3 shadow hover:bg-primary/90 transition"
-                    onClick={() => setMobileOpen(false)}
+                  <Button
+                    size="lg"
+                    className="w-full text-lg font-bold text-center bg-primary text-white rounded px-4 py-3 shadow hover:bg-primary/90 transition"
+                    asChild
                   >
-                    Register Now
-                  </a>
+                    <a href="/results" onClick={() => setMobileOpen(false)}>
+                      Round 1 Results
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>

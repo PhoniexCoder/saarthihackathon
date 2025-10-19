@@ -53,7 +53,7 @@ const timeline = [
   { date: "1 Oct 2025", event: "Participant registration opens and PPT submissions Begins" },
   { date: "10 Oct 2025", event: "PPT submission closes" },
   { date: "17 Oct 2025", event: "Results of PPT round announced" },
-  { date: "20 Oct 2025", event: "Final registration fee payment" },
+  { date: "22 Oct 2025", event: "Final registration fee payment" },
   { date: "1 Nov 2025", event: "Submission of NOC and ID proof (soft copy)" },
   { date: "8-9 Nov 2025", event: "National-level Hackathon at GEHU, Dehradun" },
 ];
@@ -226,11 +226,10 @@ export default function HomePage() {
                 asChild
               >
                 <a
-                  href="https://unstop.com/hackathons/saarthi-2025-graphic-era-hill-university-gehu-dehradun-campus-1564475"
-                  target="_blank"
+                  href="/results"
                   rel="noopener noreferrer"
                 >
-                  Register Now
+                  Round 1 Results
                 </a>
               </Button>
             </GSAPTextHover>
