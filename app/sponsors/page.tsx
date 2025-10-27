@@ -5,11 +5,11 @@ import Header from "@/components/ui/header"
 import Footer from "@/components/ui/footer"
 
 const sponsors = [
-	// {
-	// 	name: "TechCorp",
-	// 	about: "Leading technology solutions provider.",
-	// 	logo: "/sponsors/techcorp.png",
-	// },
+	{
+		name: "HackwithIndia",
+		about: "Driving Positive Change through Technology.",
+		logo: "/HWI.jpg",
+	},
 	// {
 	// 	name: "InnoSoft",
 	// 	about: "Innovating accessibility for all.",
