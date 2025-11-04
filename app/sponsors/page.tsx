@@ -6,14 +6,19 @@ import Footer from "@/components/ui/footer"
 
 const sponsors = [
 	{
-		name: "HackwithIndia",
-		about: "Driving Positive Change through Technology.",
-		logo: "/HWI.jpg",
+		name: "MSI",
+		about: "",
+		logo: "/msi.png",
 	},
-	// {
-	// 	name: "InnoSoft",
-	// 	about: "Innovating accessibility for all.",
-	// 	logo: "/sponsors/innosoft.png",
+	{
+		name: "MindClub Foundation",
+		about: "",
+		logo: "/mcf.png",
+	},
+  // {
+	// 	name: "MindClub Foundation",
+	// 	about: "Empower Minds, Transform Lives.",
+	// 	logo: "/mcf.png",
 	// },
 	// {
 	// 	name: "EduNext",
@@ -86,14 +91,13 @@ export default function SponsorsPage() {
                 {/* Sponsor logo in a rectangular badge */}
                 <div className="flex-1 flex flex-col items-center justify-center w-full px-2 sm:px-4 py-4">
                   <div className="w-full flex items-center justify-center mb-3">
-                    <div className="bg-gradient-to-r from-blue-100 via-white to-pink-100 rounded-md shadow-md px-2 sm:px-4 py-2 w-24 sm:w-32 h-12 sm:h-16 flex items-center justify-center border-2 border-blue-200">
+                    {/* Normalized sponsor logo container */}
+                    <div className="rounded-md bg-white p-2 sm:p-3 shadow-md w-28 sm:w-36 h-16 sm:h-20 flex items-center justify-center border border-gray-100">
                       <img
                         src={sponsor.logo}
                         alt={sponsor.name}
-                        className="object-contain w-full h-full"
-                        onError={(e) =>
-                          (e.currentTarget.src = "/placeholder-user.jpg")
-                        }
+                        className="max-w-full max-h-full object-contain"
+                        onError={(e) => (e.currentTarget.src = "/placeholder-user.jpg")}
                       />
                     </div>
                   </div>
