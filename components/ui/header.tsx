@@ -29,10 +29,11 @@ export default function Header() {
     "bg-white";
 
   const navLinks = [
-    { href: "/" , label: "Home" },
+    { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/team", label: "Organizers" },
     { href: "/sponsors", label: "Sponsors" },
+    { href: "/itinerary", label: "Itinerary" },
     { href: "/guidelines", label: "Guidelines" },
     { href: "/results", label: "Results" },
   ];
@@ -55,9 +56,6 @@ export default function Header() {
                 </a>
               </GSAPTextHover>
             ))}
-            <Button size="lg" className="text-lg px-8 py-3 ml-2" asChild>
-              <a href="/results">Round 1 Results</a>
-            </Button>
           </div>
 
           {/* Mobile hamburger */}
@@ -99,17 +97,6 @@ export default function Header() {
                     {idx !== navLinks.length - 1 && <div className="border-b border-gray-200 my-1" />}
                   </div>
                 ))}
-                <div className="mt-4">
-                  <Button
-                    size="lg"
-                    className="w-full text-lg font-bold text-center bg-primary text-white rounded px-4 py-3 shadow hover:bg-primary/90 transition"
-                    asChild
-                  >
-                    <a href="/results" onClick={() => setMobileOpen(false)}>
-                      Round 1 Results
-                    </a>
-                  </Button>
-                </div>
               </div>
             </div>
           )}
