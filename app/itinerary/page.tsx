@@ -21,15 +21,6 @@ export default function ItineraryPage() {
           time: "10:00 AM – 12:00 PM", 
           title: "Opening Ceremony – Inaugural Address & Orientation",
           icon: <Mic className="w-5 h-5" />,
-          subItems: [
-            "Guest Arrival",
-            "Welcome Address & Bouquet Presentation",
-            "Lamp Lighting & Saraswati Vandana",
-            "Speech by Hon'ble Vice Chancellor",
-            "Presentation: About Uttarakhand",
-            "Musical Performance by Team Nandas",
-            "Address by HoD, CSE & Glimpses of Previous Hackathon"
-          ]
         },
         { time: "12:00 PM – 01:30 PM", title: "Hackathon Commences (Round 0)", icon: <Code className="w-5 h-5" />, highlight: true },
         { time: "01:30 PM – 02:30 PM", title: "Lunch Break", icon: <Utensils className="w-5 h-5" /> },
@@ -60,14 +51,6 @@ export default function ItineraryPage() {
           title: "Closing and Award Ceremony",
           icon: <Trophy className="w-5 h-5" />,
           highlight: true,
-          subItems: [
-            "Arrival of Dignitaries",
-            "Valediction Sessions",
-            "Chief Guest Address",
-            "Cultural Performance",
-            "Result Announcements & Prize Distribution",
-            "Vote of Thanks"
-          ]
         },
       ],
     },
