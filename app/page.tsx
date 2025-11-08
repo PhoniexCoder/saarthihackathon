@@ -98,24 +98,57 @@ export default function HomePage() {
     seconds: 0,
   })
 
+  const [hasStarted, setHasStarted] = useState(false)
+
   useEffect(() => {
-    const targetDate = new Date("2025-11-08T00:00:00").getTime()
+    const getTodayNoon = () => {
+      const n = new Date()
+      return new Date(n.getFullYear(), n.getMonth(), n.getDate(), 12, 0, 0, 0).getTime()
+    }
 
-    const timer = setInterval(() => {
-      const now = new Date().getTime()
-      const difference = targetDate - now
+    const startAt = getTodayNoon()
 
-      if (difference > 0) {
+    const tick = () => {
+      const now = Date.now()
+      if (now < startAt) {
+        // Count down until 12 PM today
+        setHasStarted(false)
+        const diff = startAt - now
         setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000),
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000),
+        })
+      } else {
+        // After 12 PM today: count up (elapsed time since start)
+        setHasStarted(true)
+        const diff = now - startAt
+        setTimeLeft({
+          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((diff % (1000 * 60)) / 1000),
         })
       }
-    }, 1000)
+    }
 
-    return () => clearInterval(timer)
+    // Align to next exact second to keep flips consistent
+    const scheduleAligned = () => {
+      tick()
+      const delay = 1000 - (Date.now() % 1000) + 5
+      timerId = window.setTimeout(function loop() {
+        tick()
+        const nextDelay = 1000 - (Date.now() % 1000) + 5
+        timerId = window.setTimeout(loop, nextDelay)
+      }, delay)
+    }
+
+    let timerId: number | null = null
+    scheduleAligned()
+    return () => {
+      if (timerId) window.clearTimeout(timerId)
+    }
   }, [])
 
   const fadeInUp = {
@@ -222,15 +255,10 @@ export default function HomePage() {
                 size="lg"
                 className={`text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-transform ${
                   shake ? "animate-shake ring-4 ring-blue-400/40" : ""
-                }`}
-                asChild
+                } ${hasStarted ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
+                disabled={false}
               >
-                <a
-                  href="/results"
-                  rel="noopener noreferrer"
-                >
-                  Round 1 Results
-                </a>
+                {hasStarted ? 'Hackathon Is Live 🎉' : 'Left For Preparation'}
               </Button>
             </GSAPTextHover>
           </motion.div>
