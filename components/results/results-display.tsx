@@ -42,25 +42,50 @@ function BackgroundElements() {
 
 const staticResults = [
 	{
-		team: "Team Alpha",
+		team: "ABS",
 		position: 1,
-		project: "Accessible Navigation App",
-		members: ["Priya Singh", "Rahul Verma"],
-		photo: "/placeholder-logo.png",
+		members: ["Bhavya Agarwal", "Anushka Negi", "Saurabh singh", "Ayushman chauhan"],
+		college: "Graphic Era Hill University",
+		photo: "/ABS.jpg",
 	},
 	{
-		team: "Team Beta",
+		team: "ORBIS",
 		position: 2,
-		project: "Sign Language Translator",
-		members: ["A. Sharma", "R. Kumar"],
-		photo: "/placeholder-logo.png",
+		members: ["Subhranshu Mohanty", "Ayush Duttatreya Panigrahi", "Debjeet Ghosh"],
+		college: "Birla Global University, Bhimtal",
+		photo: "/ORBIS.jpg",
 	},
 	{
-		team: "Team Gamma",
+		team: "NUERONAV",
 		position: 3,
-		project: "Braille e-Reader",
-		members: ["Sneha Patel", "Vikram Joshi"],
-		photo: "/placeholder-logo.png",
+		members: ["Shubham Gangari", "Saurabh Kaintura", "Anshika Bijalwan", "Ashish Gond"],
+		college: "Swami Rama Himalayan University",
+		photo: "/neuro.jpg",
+	},
+	{
+		team: "TECHNITI 6.0",
+		position: 4,
+		members: ["Sarthak Pundit", "Saksham Godryal", "Suraj Singh Bhandari"],
+		college: "Graphic Era Hill University",
+		photo: "/Techniti.jpg",
+		specialAward: "Most Inclusive Tech Solution",
+		
+	},
+	{
+		team: "THE ENDURANCE",
+		position: 5,
+		members: ["Anuj Mishra", "Gauri Shankar", "kunal", "Akshat Gupta"],
+		college: "The Institute of Chartered Financial Analysts of India University, Dehradun",
+		photo: "/T202.jpg",
+		specialAward: "Most Sustainable Assistive Idea",
+	},
+	{
+		team: "AgroCode",
+		position: 6,
+		members: ["Vivek Bartwal", "Manavata Joshi", "Vidish Bijalwan", "Akshay Rana"],
+		college: "Graphic Era Hill University",
+		photo: "/agrocode.jpg",
+		specialAward: "Best Startup Idea",
 	},
 ];
 
@@ -74,6 +99,12 @@ export function ResultsDisplay() {
 				return <Medal className="h-8 w-8 text-gray-400" />
 			case 3:
 				return <Award className="h-8 w-8 text-amber-600" />
+			case 4:
+				return <Star className="h-8 w-8 text-green-500" />
+			case 5:
+				return <Star className="h-8 w-8 text-emerald-500" />
+			case 6:
+				return <Star className="h-8 w-8 text-cyan-500" />
 			default:
 				return <Star className="h-8 w-8 text-blue-500" />
 		}
@@ -86,6 +117,12 @@ export function ResultsDisplay() {
 				return "from-gray-300 to-gray-500"
 			case 3:
 				return "from-amber-400 to-amber-600"
+			case 4:
+				return "from-green-400 to-green-600"
+			case 5:
+				return "from-emerald-400 to-emerald-600"
+			case 6:
+				return "from-cyan-400 to-cyan-600"
 			default:
 				return "from-blue-400 to-blue-600"
 		}
@@ -214,49 +251,86 @@ export function ResultsDisplay() {
 					</motion.section>
 
 					{/* Winners Grid */}
-					{/*
+					
 					<motion.div
-						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
 						variants={containerVariants}
 						initial="hidden"
 						animate="visible"
 					>
 						{staticResults.map((result, index) => (
-							<motion.div key={index} variants={itemVariants}>
-								<Card
-									className={`relative overflow-hidden border-2 ${
-										result.position <= 3 ? "border-primary shadow-lg" : "border-border"
-									} hover:shadow-xl transition-all duration-300`}
-								>
-									<img src={result.photo} alt={result.team + " logo"} className="w-20 h-20 object-contain mx-auto mt-4 rounded-full border" />
-									<CardHeader className="pb-4">
-										<div className="flex items-center space-x-3 mb-3">
+							<motion.div 
+								key={index} 
+								variants={itemVariants}
+								whileHover={{ scale: 1.02 }}
+								transition={{ duration: 0.3 }}
+							>
+								<Card className="relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white h-full">
+									{/* Position Badge - Top Corner */}
+									<div className="absolute top-4 left-4 z-20">
+										<div className={`flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br ${getPositionGradient(result.position)} shadow-lg`}>
 											{getPositionIcon(result.position)}
-											<div>
-												<CardTitle className="text-xl">{result.team}</CardTitle>
-												<CardDescription className="text-sm">{result.project}</CardDescription>
+										</div>
+									</div>
+									
+									{/* Team Image */}
+									<div className="relative h-56 overflow-hidden">
+										<img 
+											src={result.photo} 
+											alt={result.team} 
+											className="w-full h-full object-cover"
+										/>
+										<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+										
+										{/* Team Name Overlay */}
+										<div className="absolute bottom-0 left-0 right-0 p-4">
+											<h3 className="text-2xl font-bold text-white drop-shadow-lg">{result.team}</h3>
+											<p className="text-sm text-white/90 mt-1">{result.project}</p>
+										</div>
+									</div>
+									
+									{/* Card Content */}
+									<div className="p-2 space-y-4">
+										{/* Award Badge */}
+										<div className="flex items-center justify-center">
+											<Badge className={`bg-gradient-to-r ${getPositionGradient(result.position)} text-white border-0 px-4 py-1.5 text-sm font-semibold`}>
+												{result.position === 1 
+													? "🏆 Winner" 
+													: result.position === 2 
+													? "🥈 Runner Up" 
+													: result.position === 3 
+													? "🥉 Second Runner Up"
+													: 'specialAward' in result 
+													? result.specialAward 
+													: `Position #${result.position}`}
+											</Badge>
+										</div>
+										
+										{/* Members */}
+										<div className="space-y-2">
+											<div className="flex items-center gap-2 text-gray-700">
+												<Users className="h-4 w-4" />
+												<span className="text-xs font-semibold uppercase tracking-wide">Team Members</span>
+											</div>
+											<div className="text-sm text-gray-600 leading-relaxed">
+												{result.members.join(", ")}
 											</div>
 										</div>
-										<Badge
-											className={`w-fit bg-gradient-to-r ${getPositionGradient(result.position)} text-white border-0`}
-										>
-											{result.position === 1 ? "Winner" : result.position === 2 ? "Runner Up" : `Position #${result.position}`}
-										</Badge>
-									</CardHeader>
-									<CardContent className="space-y-4">
-										<div className="flex items-center space-x-2 text-muted-foreground">
-											<Users className="h-4 w-4" />
-											<span className="text-sm">Members: {result.members.join(", ")}</span>
+										
+										{/* College */}
+										<div className="pt-3 border-t border-gray-100">
+											<div className="flex items-center gap-2 text-gray-700">
+												<Calendar className="h-4 w-4" />
+												<span className="text-sm font-medium">{result.college}</span>
+											</div>
 										</div>
-									</CardContent>
+									</div>
 								</Card>
 							</motion.div>
 						))}
 					</motion.div>
-					*/}
 
 					{/* Congratulations Section */}
-					{/*
 					<motion.div
 						className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white"
 						initial={{ opacity: 0, scale: 0.95 }}
@@ -270,7 +344,7 @@ export function ResultsDisplay() {
 							more inclusive and accessible for everyone.
 						</p>
 					</motion.div>
-					*/}
+					
 
 					{/* Footer */}
 					<motion.div

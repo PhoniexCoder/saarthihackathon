@@ -99,20 +99,19 @@ export default function HomePage() {
   })
 
   const [hasStarted, setHasStarted] = useState(false)
+  const [hasEnded, setHasEnded] = useState(false)
 
   useEffect(() => {
-    const getTodayNoon = () => {
-      const n = new Date()
-      return new Date(n.getFullYear(), n.getMonth(), n.getDate(), 12, 0, 0, 0).getTime()
-    }
-
-    const startAt = getTodayNoon()
+    // Fixed event date: November 8, 2025 at 12:00 PM local time
+    const startAt = new Date(2025, 10, 8, 12, 0, 0, 0).getTime() // Month is 0-indexed, so 10 = November
+    const endAt = startAt + 24 * 60 * 60 * 1000 // 24 hours after start
 
     const tick = () => {
       const now = Date.now()
       if (now < startAt) {
         // Count down until 12 PM today
         setHasStarted(false)
+        setHasEnded(false)
         const diff = startAt - now
         setTimeLeft({
           days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -120,9 +119,10 @@ export default function HomePage() {
           minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((diff % (1000 * 60)) / 1000),
         })
-      } else {
-        // After 12 PM today: count up (elapsed time since start)
+      } else if (now >= startAt && now < endAt) {
+        // Live: count up (elapsed time since start)
         setHasStarted(true)
+        setHasEnded(false)
         const diff = now - startAt
         setTimeLeft({
           days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -130,6 +130,11 @@ export default function HomePage() {
           minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((diff % (1000 * 60)) / 1000),
         })
+      } else {
+        // Ended: show zeros
+        setHasStarted(true)
+        setHasEnded(true)
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
       }
     }
 
@@ -139,6 +144,8 @@ export default function HomePage() {
       const delay = 1000 - (Date.now() % 1000) + 5
       timerId = window.setTimeout(function loop() {
         tick()
+        // Stop scheduling after the event ends
+        if (Date.now() >= endAt) return
         const nextDelay = 1000 - (Date.now() % 1000) + 5
         timerId = window.setTimeout(loop, nextDelay)
       }, delay)
@@ -206,59 +213,68 @@ export default function HomePage() {
             {/* Countdown Timer */}
             <div className="flex flex-row gap-4 max-w-2xl mx-auto mb-8 justify-center items-center flex-wrap sm:flex-nowrap">
               {Object.entries(timeLeft).map(([unit, value], idx) => {
-                // Only animate the seconds card every second
-                const [prev, setPrev] = useState(value);
-                const [rotation, setRotation] = useState(0);
-                useEffect(() => {
-                  if (prev !== value) {
-                    setRotation((r) => r + 180);
-                    setPrev(value);
-                  }
-                }, [value]);
-                return (
-                  <FlipCard
-                    key={unit}
-                    className="h-24 w-20 min-w-[5rem]"
-                    rotation={rotation}
-                    axis="y"
-                    front={
-                      <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
-                        <CardContent className="p-0">
-                          <div className="text-2xl md:text-3xl font-bold text-primary">
-                            {value}
-                          </div>
-                          <div className="text-sm text-muted-foreground capitalize">
-                            {unit}
-                          </div>
-                        </CardContent>
-                      </Card>
+                  // Only animate the seconds card every second
+                  const [prev, setPrev] = useState(value);
+                  const [rotation, setRotation] = useState(0);
+                  useEffect(() => {
+                    if (prev !== value) {
+                      setRotation((r) => r + 180);
+                      setPrev(value);
                     }
-                    back={
-                      <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
-                        <CardContent className="p-0">
-                          <div className="text-2xl md:text-3xl font-bold text-primary">
-                            {value}
-                          </div>
-                          <div className="text-sm text-muted-foreground capitalize">
-                            {unit}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    }
-                  />
-                );
-              })}
-            </div>
+                  }, [value]);
+                  return (
+                    <FlipCard
+                      key={unit}
+                      className="h-24 w-20 min-w-[5rem]"
+                      rotation={rotation}
+                      axis="y"
+                      front={
+                        <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
+                          <CardContent className="p-0">
+                            <div className="text-2xl md:text-3xl font-bold text-primary">
+                              {value}
+                            </div>
+                            <div className="text-sm text-muted-foreground capitalize">
+                              {unit}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      }
+                      back={
+                        <Card className="h-full w-full bg-white border border-gray-300 rounded-xl flex flex-col justify-center items-center p-2">
+                          <CardContent className="p-0">
+                            <div className="text-2xl md:text-3xl font-bold text-primary">
+                              {value}
+                            </div>
+                            <div className="text-sm text-muted-foreground capitalize">
+                              {unit}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      }
+                    />
+                  );
+                })}
+              </div>
 
             <GSAPTextHover blendMode="multiply" scaleAmount={1.05}>
               <Button
                 size="lg"
                 className={`text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 transition-transform ${
                   shake ? "animate-shake ring-4 ring-blue-400/40" : ""
-                } ${hasStarted ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
+                } ${hasStarted && !hasEnded ? 'bg-green-600 hover:bg-green-700 text-white' : ''}`}
                 disabled={false}
+                asChild={hasEnded}
               >
-                {hasStarted ? 'Hackathon Is Live 🎉' : 'Left For Preparation'}
+                {hasEnded ? (
+                  <a href="/results" rel="noopener noreferrer">
+                    Results Out
+                  </a>
+                ) : hasStarted ? (
+                  'Hackathon Is Live'
+                ) : (
+                  'Left For Preparation'
+                )}
               </Button>
             </GSAPTextHover>
           </motion.div>
