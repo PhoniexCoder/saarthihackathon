@@ -52,7 +52,7 @@ const staticResults = [
 		team: "ORBIS",
 		position: 2,
 		members: ["Subhranshu Mohanty", "Ayush Duttatreya Panigrahi", "Debjeet Ghosh"],
-		college: "Birla Global University, Bhimtal",
+		college: "Birla Global University, Odisha",
 		photo: "/ORBIS.JPG",
 	},
 	{
